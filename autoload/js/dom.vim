@@ -648,6 +648,72 @@ let s:domObject.NamedNodeMap = {
 " 2}}}
 " 1}}}
 
+" XMLHttpRequest Level 2 {{{1
+" http://www.w3.org/TR/XMLHttpRequest/
+" XMLHttpRequestEventTarget {{{2
+let s:domObject.XMLHttpRequestEventTarget = {
+  \   'kind': 'v', 'type': 'Object', 'props': {
+  \     'prototype': {
+  \       'kind': 'v', 'type': 'EventTarget', 'props': {
+  \         'onloadstart': {'kind': 'v', 'menu': '[XMLHttpRequestEventTarget]', 'type': 'Function'},
+  \         'onprogress':  {'kind': 'v', 'menu': '[XMLHttpRequestEventTarget]', 'type': 'Function'},
+  \         'onabort':     {'kind': 'v', 'menu': '[XMLHttpRequestEventTarget]', 'type': 'Function'},
+  \         'onerror':     {'kind': 'v', 'menu': '[XMLHttpRequestEventTarget]', 'type': 'Function'},
+  \         'onload':      {'kind': 'v', 'menu': '[XMLHttpRequestEventTarget]', 'type': 'Function'},
+  \         'ontimeout':   {'kind': 'v', 'menu': '[XMLHttpRequestEventTarget]', 'type': 'Function'},
+  \         'onloadend':   {'kind': 'v', 'menu': '[XMLHttpRequestEventTarget]', 'type': 'Function'},
+  \       }
+  \     }
+  \   }
+  \ }
+" 2}}}
+" XMLHttpRequest {{{2
+let s:domObject.XMLHttpRequest = {
+  \   'kind': 'f', 'type': 'XMLHttpRequest', 'props': {
+  \     'UNSENT':           {'kind': 'v', 'menu': '[XMLHttpRequest] 0', 'type': 'Number'},
+  \     'OPENED':           {'kind': 'v', 'menu': '[XMLHttpRequest] 1', 'type': 'Number'},
+  \     'HEADERS_RECEIVED': {'kind': 'v', 'menu': '[XMLHttpRequest] 2', 'type': 'Number'},
+  \     'DONE':             {'kind': 'v', 'menu': '[XMLHttpRequest] 3', 'type': 'Number'},
+  \     'prototype': {
+  \       'kind': 'v', 'type': 'XMLHttpRequestEventTarget', 'props': {
+  \         'UNSENT':                {'kind': 'v', 'menu': '[XMLHttpRequest] 0', 'type': 'Number'},
+  \         'OPENED':                {'kind': 'v', 'menu': '[XMLHttpRequest] 1', 'type': 'Number'},
+  \         'HEADERS_RECEIVED':      {'kind': 'v', 'menu': '[XMLHttpRequest] 2', 'type': 'Number'},
+  \         'DONE':                  {'kind': 'v', 'menu': '[XMLHttpRequest] 3', 'type': 'Number'},
+  \         'readyState':            {'kind': 'v', 'menu': '[XMLHttpRequest]',   'type': 'Number'},
+  \         'open':                  {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'setRequestHeader':      {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'upload':                {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'XMLHttpRequestEventTarget'},
+  \         'send':                  {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'abort':                 {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'status':                {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'Number'},
+  \         'statusText':            {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'String'},
+  \         'getResponseHeader':     {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': 'String'},
+  \         'getAllResponseHeaders': {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': 'String'},
+  \         'overrideMimeType':      {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'responseType':          {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'String'},
+  \         'response':              {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'Object'},
+  \         'responseText':          {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'String'},
+  \         'responseXML':           {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'Document'},
+  \       }
+  \     }
+  \   }
+  \ }
+" 2}}}
+" FormData {{{2
+let s:domObject.FormData = {
+  \   'kind': 'f', 'type': 'FormData', 'props': {
+  \     'prototype': {
+  \       'kind': 'v', 'type': 'Object', 'props': {
+  \         'append': {'kind': 'f', 'menu': '[FormData]'},
+  \       }
+  \     }
+  \   }
+  \ }
+" 2}}}
+" 1}}}
+echomsg string(sort(keys(s:domObject)))
+
 " HTML5 {{{1
 let s:html5 = {}
 " Window {{{2

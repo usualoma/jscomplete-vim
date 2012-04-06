@@ -36,10 +36,6 @@ let s:GlobalObject.Object = {
   \         'unwatch':              {'kind': 'f', 'menu': '[Object.prototype]', 'type': '' },
   \         'valueof':              {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Object' },
   \         'watch':                {'kind': 'f', 'menu': '[Object.prototype]', 'type': '' },
-  \         '__defineGetter__':     {'kind': 'f', 'menu': '[Object.prototype]', 'type': '' },
-  \         '__defineSetter__':     {'kind': 'f', 'menu': '[Object.prototype]', 'type': '' },
-  \         '__lookupGetter__':     {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Function' },
-  \         '__lookupSetter__':     {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Function' },
   \       }
   \     }
   \   }

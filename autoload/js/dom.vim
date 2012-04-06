@@ -712,7 +712,6 @@ let s:domObject.FormData = {
   \ }
 " 2}}}
 " 1}}}
-echomsg string(sort(keys(s:domObject)))
 
 " HTML5 {{{1
 let s:html5 = {}

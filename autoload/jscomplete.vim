@@ -525,7 +525,7 @@ function! jscomplete#CompleteJS(findstart, base)
     let target = s:ParseCurrentExpression(shortcontext[: col -2], currentLine)
   endif
   if exists('target') && !empty(target)
-    call s:AddCompleteWords(s:GetProperties(target), a:base, prefix, postfix)
+    return s:AddCompleteWords(s:GetProperties(target), a:base, prefix, postfix)
   endif
 endfunction
 " 1}}}
@@ -1166,6 +1166,7 @@ endfunction
 
 " s:AddCompleteWords (Dict::props, String::filter, String::prefix, String::postfix) {{{1
 function s:AddCompleteWords (props, filter, prefix, postfix)
+  let comp_list = []
   for key in sort(keys(a:props))
     if empty(a:prefix) && key !~ '^'.s:IdentifierReg.'$'
       continue
@@ -1178,9 +1179,10 @@ function s:AddCompleteWords (props, filter, prefix, postfix)
       if kind == 'f'
         let word .= '('
       endif
-      call complete_add({'word': word, 'kind': kind, 'menu': menu})
+      call add(comp_list, {'word': word, 'kind': kind, 'menu': menu})
     endif
   endfor
+  return comp_list
 endfunction
 " 1}}}
 

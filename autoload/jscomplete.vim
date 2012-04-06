@@ -521,7 +521,7 @@ function! jscomplete#CompleteJS(findstart, base)
     let target = s:ParseCurrentExpression(shortcontext[: col -2], currentLine)
   endif
   if exists('target') && !empty(target)
-    return s:AddCompleteWords(s:GetProperties(target), a:base, prefix, postfix)
+    return s:ConvertCompleteWords(s:GetProperties(target), a:base, prefix, postfix)
   endif
 endfunction
 " 1}}}
@@ -1160,8 +1160,8 @@ function s:ParseTokens(start, end, pri)
 endfunction
 " 1}}}
 
-" s:AddCompleteWords (Dict::props, String::filter, String::prefix, String::postfix) {{{1
-function s:AddCompleteWords (props, filter, prefix, postfix)
+" s:ConvertCompleteWords (Dict::props, String::filter, String::prefix, String::postfix) {{{1
+function s:ConvertCompleteWords (props, filter, prefix, postfix)
   let comp_list = []
   for key in sort(keys(a:props))
     if empty(a:prefix) && key !~ '^'.s:IdentifierReg.'$'

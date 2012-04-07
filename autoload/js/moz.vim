@@ -13,7 +13,7 @@ set cpo&vim
 let s:MOZ = {
   \   'Object': {
   \     'prototype': {
-  \       'toSource': {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'String'}
+  \       'toSource': {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'String'},
   \       '__defineGetter__': {'kind': 'f', 'menu': '[Object.prototype]', 'type': ''},
   \       '__defineSetter__': {'kind': 'f', 'menu': '[Object.prototype]', 'type': ''},
   \       '__lookupGetter__': {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Function'},

@@ -935,8 +935,23 @@ function s:ParseExpression2 (tokens, pri)
     elseif token.type == 'op'
       if token.pri == s:ExpressionPriority.Comma
         call add(results, result)
+        let result = {}
       elseif token.pri == s:ExpressionPriority.Assignment
-        " TODO:
+        let [i, res] = s:ParseExpression2(a:tokens[index+1 :], s:ExpressionPriority.Assignment)
+        let index += i
+        if token.name == '='
+          let result = get(res, -1, {})
+        elseif token.name =~ '[*/%+-]'
+          let result = s:CalcValue(result, get(res, -1, {}), token.name[0])
+        endif
+      elseif token.pri == s:ExpressionPriority.Additive
+        let [i, res] = s:ParseExpression2(a:tokens[index+1 :], s:ExpressionPriority.Additive)
+        let index += i
+        let result = s:CalcValue(result, get(res, -1, {}), token.name)
+      elseif token.pri == s:ExpressionPriority.Multiplicative
+        let [i, res] = s:ParseExpression2(a:tokens[index+1 :], s:ExpressionPriority.Multiplicative)
+        let index += i
+        let result = s:CalcValue(result, get(res, -1, {}), token.name)
       endif
     endif
 
@@ -949,6 +964,28 @@ function s:ParseExpression2 (tokens, pri)
 
   call add(results, result)
   return [index, results]
+endfunction
+" 1}}}
+
+" Dict s:CalcValue (Dict::lhs, Dict::rhs, String::op) {{{1
+function s:CalcValue (lhs, rhs, op)
+  let lhsValue = get(a:lhs, 'value', '')
+  let rhsValue = get(a:rhs, 'value', '')
+  if a:op == '+'
+    if get(a:lhs, 'class', '') == 'Number' && get(a:rhs, 'class', '') == 'Number'
+      let result = copy(b:GlobalObject.Number.props.prototype)
+      let result.value = lhsValue + rhsValue
+    else
+      let result = copy(b:GlobalObject.String.props.prototype)
+      let result.value = lhsValue . rhsValue
+    endif
+    return result
+  elseif op =~ '[*/%-]'
+    let result = copy(b:GlobalObject.Number.props.prototype)
+    let result.value = eval(lhsValue . a:op . rhsValue)
+    return result
+  endif
+  return {}
 endfunction
 " 1}}}
 

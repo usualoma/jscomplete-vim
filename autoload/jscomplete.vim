@@ -552,9 +552,55 @@ endfunction
 
 " Dict s:ParseCurrentExpression (String::shortcontext, Number::currentLine) {{{1
 function s:ParseCurrentExpression (shortcontext, currentLine)
-  let tokens = s:GetCurrentLHSTokens(a:shortcontext, a:currentLine, [])
+  let tokens = s:FixTokens(s:GetCurrentLHSTokens(a:shortcontext, a:currentLine, [], 0))
   let [i, results] = s:ParseExpression2(tokens, s:ExpressionPriority.Comma)
   return get(results, -1, {})
+endfunction
+" 1}}}
+
+" List s:FixTokens (List::tokens) {{{1
+function s:FixTokens (tokens)
+  let tokens = []
+  let tokenLength = len(a:tokens)
+  let index = 0
+  while index < tokenLength
+    let token = a:tokens[index]
+    let index += 1
+    if len(tokens) == 0
+      if token.type == 'Identifier'
+        if token.name == 'new'
+          call add(tokens, {'type': 'keyword', 'name': 'new', 'pri': s:ExpressionPriority.LeftHandSide})
+        elseif index(s:Keywords, token.name) >= 0
+          let nextToken = get(a:tokens, index, {'type': ''})
+          if nextToken.type == 'GroupAndBlock'
+            let index += 1
+          elseif nextToken.type == 'Group' && index(['if', 'for', 'switch', 'catch'], token.name) >= 0
+            let index += 1
+          endif
+        else
+          call add(tokens, token)
+        endif
+      elseif token.type == 'GroupAndBlock'
+        continue
+      else
+        call add(tokens, token)
+      endif
+    elseif token.type == 'Group'
+      if tokens[-1].type == 'keyword'
+        call add(tokens, token)
+      else
+        let prevToken = tokens[-1]
+        let prevToken.callArgs = get(prevToken, 'callArgs', []) + [token.pos]
+      endif
+    else
+      call add(tokens, token)
+    endif
+  endwhile
+
+  if get(tokens, 0, {'type': ''}).type == 'Property'
+    let tokens[0].type = 'ArrayLiteral'
+  endif
+  return tokens
 endfunction
 " 1}}}
 
@@ -611,26 +657,33 @@ function s:GetProperties (target)
 endfunction
 " 1}}}
 
-" List s:GetCurrentLHSTokens (String::line, Number::lineNum, List::tokens) {{{1
+" List s:GetCurrentLHSTokens (String::line, Number::lineNum, List::tokens, Number::isNewLine) {{{1
 " line から逆方向へパースして LeftHandSideExpression のトークンリストを得る
-function s:GetCurrentLHSTokens (line, lineNum, tokens)
+function s:GetCurrentLHSTokens (line, lineNum, tokens, isNewLine)
   let tokens = a:tokens
   let prevToken = get(tokens, 0, {'type': ''})
   let line = substitute(a:line, '\s*$', '', '')
   if empty(line)
     let l = prevnonblank(a:lineNum - 1)
-    return l > 0 ? s:GetCurrentLHSTokens(getline(l), l, tokens) : tokens
+    return l > 0 ? s:GetCurrentLHSTokens(getline(l), l, tokens, 1) : tokens
   endif
   let token = {'pri': s:ExpressionPriority.LeftHandSide}
-  if prevToken.type == 'Group'
-    let args = [prevToken.pos] + (has_key(prevToken, 'callArgs') ? prevToken.callArgs : [])
-    call extend(token, {'callArgs': args})
-    unlet tokens[0]
-  endif
 
   let lastChar = line[len(line) -1]
+  if lastChar == ';'
+    if prevToken.type == 'FunctionLiteral' || prevToken.type == 'ObjectLiteral'
+      unlet tokens[0]
+    endif
+    return tokens
+  elseif lastChar =~ '[-+~!*/%><=&^|?:,({\[]'
+    return tokens
+  endif
+
   if prevToken.type != 'GroupAndBlock'
     if lastChar =~ '[)}\]]'
+      if a:isNewLine && (prevToken.type == 'Identifier' || prevToken.type == 'FunctionLiteral')
+        return tokens
+      endif
       let e = lastChar
       if e == ')'
         if prevToken.type == 'ObjectLiteral'
@@ -641,12 +694,19 @@ function s:GetCurrentLHSTokens (line, lineNum, tokens)
         endif
         let s = '('
       elseif e == '}'
-        if prevToken.type != '' && prevToken.type != 'op' && prevToken.type != 'Property'
+        if prevToken.type == 'ObjectLiteral'
+          return tokens[1:]
+        elseif index(['', 'op', 'Property', 'Group'], prevToken.type) == -1
           return tokens
         endif
         call extend(token, {'type': 'ObjectLiteral', 'pri': s:ExpressionPriority.Primary})
         let s = '{'
       else
+        if a:isNewLine && prevToken.type == 'ObjectLiteral'
+          return tokens[1:]
+        elseif index(['', 'op', 'Property', 'Group'], prevToken.type) == -1
+          return a:isNewLine ? tokens : []
+        endif
         call extend(token, {'type': 'Property'})
         let s = '\['
         let e = '\]'
@@ -656,7 +716,7 @@ function s:GetCurrentLHSTokens (line, lineNum, tokens)
       let token.pos = {'start': startPos, 'end': [a:lineNum, len(line)]}
       call insert(tokens, token)
       let line = startPos[1] > 1 ? getline(startPos[0])[: startPos[1]-2] : ''
-      return s:GetCurrentLHSTokens(line, startPos[0], tokens)
+      return s:GetCurrentLHSTokens(line, startPos[0], tokens, 0)
     elseif lastChar =~ '["'']'
       let m = matchstr(line, '\(["'']\).\{-}\%(\\\)\@<!\1$')
       let string = eval('"'. m[1: m-2] .'"')
@@ -671,50 +731,52 @@ function s:GetCurrentLHSTokens (line, lineNum, tokens)
         return [] " SyntaxError
       endif
       call insert(tokens, extend(token, {'type': 'op', 'name': '.'}))
-      return s:GetCurrentLHSTokens(line[: -2], a:lineNum, tokens)
+      return s:GetCurrentLHSTokens(line[: -2], a:lineNum, tokens, 0)
     endif
   endif
 
   if line =~ s:IdentifierReg.'$'
     let identifier = matchstr(line, s:IdentifierReg.'$')
 
-    if identifier == 'new'
-      if prevToken.type == 'Group'
-        call insert(tokens, prevToken)
-      endif
-      return insert(tokens, {'type': 'keyword', 'name': 'new', 'pri': s:ExpressionPriority.LeftHandSide})
-    elseif identifier == 'function'
-      if prevToken.type != 'GroupAndBlock'
-        return [] " SyntaxError
-      endif
-      call extend(prevToken, {'type': 'FunctionLiteral', 'funcArgs': prevToken.pos, 'pri': s:ExpressionPriority.Primary})
-      unlet prevToken.pos
-    elseif prevToken.type == 'GroupAndBlock'
-      if !has_key(prevToken, 'name')
-        let prevToken.name = identifier
+    if prevToken.type == 'Identifier'
+      if identifier == 'new'
+        call insert(tokens, extend(token, {'type': 'Identifier', 'name': 'new'}))
+      elseif a:isNewLine || index(s:Keywords, identifier) >= 0
+        return tokens
       else
-        return [] " SyntaxError
+        return []
       endif
-    elseif prevToken.type == 'Identifier' || prevToken.type == 'ObjectLiteral'
-      return tokens
-    elseif index(s:Keywords, identifier) >= 0
-      if prevToken.type == 'Group'
-        call insert(tokens, prevToken)
+    elseif prevToken.type == 'FunctionLiteral'
+      if identifier == 'new'
+        call insert(tokens, extend(token, {'type': 'Identifier', 'name': 'new'}))
+      elseif a:isNewLine
+        return tokens[1:]
+      elseif index(s:Keywords, identifier) >= 0
+        return tokens
+      else
+        return []
       endif
-      return tokens
+    elseif prevToken.type == 'GroupAndBlock'
+      if identifier == 'function'
+        call extend(prevToken, {'type': 'FunctionLiteral', 'funcArgs': prevToken.pos, 'pri': s:ExpressionPriority.Primary})
+        unlet prevToken.pos
+      elseif line =~ 'function\s\+'.identifier.'$'
+        call extend(prevToken, {'type': 'FunctionLiteral', 'name': identifier, 'funcArgs': prevToken.pos, 'pri': s:ExpressionPriority.Primary})
+        unlet prevToken.pos
+        let identifier = matchstr(line, 'function\s\+'.identifier.'$')
+      else
+        call insert(tokens, {'type': 'Identifier', 'name': identifier, 'pri': s:ExpressionPriority.Primary})
+      endif
+    elseif prevToken.type == 'ObjectLiteral'
+      return isNewLine || index(s:Keywords, identifier) >= 0 ? tokens[1:] : []
     else
-      call extend(token, {'type': 'Identifier', 'name': identifier})
-      call insert(tokens, token)
+      call insert(tokens, {'type': 'Identifier', 'name': identifier, 'pri': s:ExpressionPriority.Primary})
     endif
+
     let line = substitute(line, identifier.'$', '', '')
-    return s:GetCurrentLHSTokens(line, a:lineNum, tokens)
+    return s:GetCurrentLHSTokens(line, a:lineNum, tokens, 0)
   endif
   
-  if prevToken.type == 'Group'
-    call insert(tokens, prevToken)
-  elseif prevToken.type == 'Property'
-    let prevToken.type = 'ArrayLiteral'
-  endif
   return tokens
 endfunction
 " 1}}}

@@ -454,8 +454,8 @@ let s:ExpressionPriority = {
   \ 'Equality': 6,
   \ 'Relational': 7,
   \ 'BitwiseShift': 8,
-  \ 'Addtive': 9,
-  \ 'Mutiplicative': 10,
+  \ 'Additive': 9,
+  \ 'Multiplicative': 10,
   \ 'Unary': 11,
   \ 'Postfix': 12,
   \ 'LeftHandSide': 13,
@@ -1166,13 +1166,13 @@ function s:ParseTokens(start, end, pri)
         let line = line[2:]
       elseif line[0] =~ '[+\-~!]' " Additive or Unary operators
         if line[0] =~ '[+\-]' && len(tokens) > 0
-          call add(tokens, {'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.Addtive})
+          call add(tokens, {'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.Additive})
         else
           call add(tokens, {'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.Unary})
         endif
         let line = line[1:]
-      elseif line[0] =~ '[*/%]' " Mutiplicative Operators
-        call add(tokens, { 'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.Mutiplicative })
+      elseif line[0] =~ '[*/%]' " Multiplicative Operators
+        call add(tokens, { 'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.Multiplicative })
         let line = line[1:]
       elseif line =~ '^\(<<\|>>\|>>>\)' " Bitwise Shift Operators
         let m = matchstr(line, '^\(<<\|>>\|>>>\)')

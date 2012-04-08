@@ -868,7 +868,7 @@ function s:EvalCall (target, isNewExpression)
       endif
     elseif has_key(a:target, 'type')
       if has_key(b:GlobalObject, a:target.type) && has_key(b:GlobalObject[a:target.type], 'props')
-        return get(b:GlobalObject[a:target.type].props, 'prototype')
+        return get(b:GlobalObject[a:target.type].props, 'prototype', {})
       else " type='' の場合は、undefined
         return b:GlobalObject.undefined
       endif

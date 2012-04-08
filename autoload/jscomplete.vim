@@ -1200,7 +1200,7 @@ function s:ParseTokens(start, end, pri)
         let line = line[1:]
       elseif line =~ '^\([\*/%+\-&^!]\|<<\|>>\|>>>\)=' " Assignment Operators
         let m = matchstr(line, '^\([\*/%+\-&^!]\|<<\|>>\|>>>\)=')
-        call add(tokens, { 'type': 'op', 'name': line[0:1], 'pri': s:ExpressionPriority.Assignment })
+        call add(tokens, { 'type': 'op', 'name': m, 'pri': s:ExpressionPriority.Assignment })
         let line = line[len(m):]
       else
         return [] " SyntaxError

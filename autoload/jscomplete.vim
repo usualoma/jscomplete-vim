@@ -191,7 +191,7 @@ let s:GlobalObject.Number = {
 " 2}}}
 " Date {{{2
 let s:GlobalObject.Date = {
-  \   'kind': 'f', 'type': 'Date',
+  \   'kind': 'f', 'type': 'String', 'newType': 'Date',
   \   'props': {
   \     'now':   {'kind': 'f', 'menu': '[Date]', 'type': 'Number' },
   \     'parse': {'kind': 'f', 'menu': '[Date]', 'type': 'Number' },

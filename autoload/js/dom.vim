@@ -19,8 +19,8 @@ let s:domObject.EventTarget = {
   \   'kind': 'v', 'type': 'Object', 'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'props': {
-  \         'addEventListener':    {'kind': 'f', 'menu': '[EventTarget]'},
-  \         'removeEventListener': {'kind': 'f', 'menu': '[EventTarget]'},
+  \         'addEventListener':    {'kind': 'f', 'menu': '[EventTarget]', 'type': ''},
+  \         'removeEventListener': {'kind': 'f', 'menu': '[EventTarget]', 'type': ''},
   \         'dipatchEvent':        {'kind': 'f', 'menu': '[EventTarget]', 'type': 'Boolean'},
   \       }
   \     }
@@ -42,9 +42,9 @@ let s:domObject.Event = {
   \         'bubbles':                  {'kind': 'v', 'menu': '[Event]',   'type': 'Boolean'},
   \         'cancelable':               {'kind': 'v', 'menu': '[Event]',   'type': 'Boolean'},
   \         'timeStamp':                {'kind': 'v', 'menu': '[Event]',   'type': 'Number'},
-  \         'stopPropagation':          {'kind': 'f', 'menu': '[Event]'},
-  \         'preventDefault':           {'kind': 'f', 'menu': '[Event]'},
-  \         'initEvent':                {'kind': 'f', 'menu': '[Event]'},
+  \         'stopPropagation':          {'kind': 'f', 'menu': '[Event]', 'type': ''},
+  \         'preventDefault':           {'kind': 'f', 'menu': '[Event]', 'type': ''},
+  \         'initEvent':                {'kind': 'f', 'menu': '[Event]', 'type': ''},
   \         'stopImmediatePropagation': {'kind': 'f', 'menu': '[Event] level 3'},
   \         'defaultPrevented':         {'kind': 'f', 'menu': '[Event] level 3', 'type': 'Boolean'},
   \         'isTrusted':                {'kind': 'f', 'menu': '[Event] level 3', 'type': 'Boolean'},
@@ -60,7 +60,7 @@ let s:domObject.UIEvent = {
   \       'kind': 'v', 'type': 'Event', 'props': {
   \         'view':        {'kind': 'v', 'menu': '[UIEvent]', 'type': 'Window'},
   \         'detail':      {'kind': 'v', 'menu': '[UIEvent]', 'type': 'Number'},
-  \         'initUIEvent': {'kind': 'f', 'menu': '[UIEvent]'},
+  \         'initUIEvent': {'kind': 'f', 'menu': '[UIEvent]', 'type': ''},
   \       }
   \     }
   \   }
@@ -72,7 +72,7 @@ let s:domObject.FocusEvent = {
   \     'prototype': {
   \       'kind': 'v', 'type': 'UIEvent', 'props': {
   \         'relatedTarget':  {'kind': 'v', 'menu': '[FocusEvent]', 'type': 'Window'},
-  \         'initFocusEvent': {'kind': 'f', 'menu': '[FocusEvent]'},
+  \         'initFocusEvent': {'kind': 'f', 'menu': '[FocusEvent]', 'type': ''},
   \       }
   \     }
   \   }
@@ -93,7 +93,7 @@ let s:domObject.MouseEvent = {
   \         'metaKey':          {'kind': 'v', 'menu': '[MouseEvent]', 'type': 'Boolean'},
   \         'button':           {'kind': 'v', 'menu': '[MouseEvent]', 'type': 'Number'},
   \         'relatedTarget':    {'kind': 'v', 'menu': '[MouseEvent]', 'type': 'EventTarget'},
-  \         'initMouseEvent':   {'kind': 'f', 'menu': '[MouseEvent]'},
+  \         'initMouseEvent':   {'kind': 'f', 'menu': '[MouseEvent]', 'type': ''},
   \         'getModifierState': {'kind': 'f', 'menu': '[MouseEvent] level 3', 'type': 'Boolean'},
   \       }
   \     }
@@ -112,7 +112,7 @@ let s:domObject.WheelEvent = {
   \         'deltaY':          {'kind': 'v', 'menu': '[WheelEvent]',      'type': 'Number'},
   \         'deltaZ':          {'kind': 'v', 'menu': '[WheelEvent]',      'type': 'Number'},
   \         'deltaMode':       {'kind': 'v', 'menu': '[WheelEvent]',      'type': 'Number'},
-  \         'initWheelEvent':  {'kind': 'f', 'menu': '[WheelEvent]'},
+  \         'initWheelEvent':  {'kind': 'f', 'menu': '[WheelEvent]',      'type': ''},
   \       }
   \     }
   \   }
@@ -136,7 +136,7 @@ let s:domObject.TextEvent = {
   \         'deta':                         {'kind': 'v', 'menu': '[TextEvent]', 'type': 'String'},
   \         'inputMethod':                  {'kind': 'v', 'menu': '[TextEvent]', 'type': 'Number'},
   \         'locale':                       {'kind': 'v', 'menu': '[TextEvent]', 'type': 'String'},
-  \         'initTextEvent':                {'kind': 'f', 'menu': '[TextEvent]'},
+  \         'initTextEvent':                {'kind': 'f', 'menu': '[TextEvent]', 'type': ''},
   \       }
   \     }
   \   }
@@ -163,7 +163,7 @@ let s:domObject.KeyboardEvent = {
   \         'repeat':                    {'kind': 'v', 'menu': '[KeyboardEvent]', 'type': 'Boolean'},
   \         'locale':                    {'kind': 'v', 'menu': '[KeyboardEvent]', 'type': 'String'},
   \         'getModifierState':          {'kind': 'f', 'menu': '[KeyboardEvent]', 'type': 'Boolean'},
-  \         'initKeyboardEvent':         {'kind': 'f', 'menu': '[KeyboardEvent]'},
+  \         'initKeyboardEvent':         {'kind': 'f', 'menu': '[KeyboardEvent]', 'type': ''},
   \       }
   \     }
   \   }
@@ -176,7 +176,7 @@ let s:domObject.CompositionEvent = {
   \       'kind': 'v', 'type': 'UIEvent', 'props': {
   \         'data':                 {'kind': 'v', 'menu': '[CompositionEvent]', 'type': 'String'},
   \         'locale':               {'kind': 'v', 'menu': '[CompositionEvent]', 'type': 'String'},
-  \         'initCompositionEvent': {'kind': 'f', 'menu': '[CompositionEvent]'},
+  \         'initCompositionEvent': {'kind': 'f', 'menu': '[CompositionEvent]', 'type': ''},
   \       }
   \     }
   \   }
@@ -195,7 +195,7 @@ let s:domObject.MutationEvent = {
   \         'newValue':          {'kind': 'v', 'menu': '[MutationEvent]', 'type': 'String'},
   \         'attrName':          {'kind': 'v', 'menu': '[MutationEvent]', 'type': 'String'},
   \         'attrChange':        {'kind': 'v', 'menu': '[MutationEvent]', 'type': 'Number'},
-  \         'initMutationEvent': {'kind': 'f', 'menu': '[MutationEvent]'},
+  \         'initMutationEvent': {'kind': 'f', 'menu': '[MutationEvent]', 'type': ''},
   \       }
   \     }
   \   }
@@ -208,7 +208,7 @@ let s:domObject.MutationNameEvent = {
   \       'kind': 'v', 'type': 'MutationEvent', 'props': {
   \         'prevNamespaceURI':      {'kind': 'v', 'menu': '[MutationNameEvent]', 'type': 'String'},
   \         'prevNodeName':          {'kind': 'v', 'menu': '[MutationNameEvent]', 'type': 'String'},
-  \         'initMutationNameEvent': {'kind': 'f', 'menu': '[MutationNameEvent]'},
+  \         'initMutationNameEvent': {'kind': 'f', 'menu': '[MutationNameEvent]', 'type': ''},
   \       }
   \     }
   \   }
@@ -280,7 +280,7 @@ let s:domObject.Node = {
   \         'appendChild':             {'kind': 'f', 'menu': '[Node]', 'type': 'Node' },
   \         'replaceChild':            {'kind': 'f', 'menu': '[Node]', 'type': 'Node' },
   \         'removeChild':             {'kind': 'f', 'menu': '[Node]', 'type': 'Node' },
-  \         'nomarize':                {'kind': 'f', 'menu': '[Node]' },
+  \         'nomarize':                {'kind': 'f', 'menu': '[Node]', 'type': '' },
   \         'cloneNode':               {'kind': 'f', 'menu': '[Node]', 'type': 'Node' },
   \         'isEqualNode':             {'kind': 'f', 'menu': '[Node]', 'type': 'Boolean' },
   \         'lookupPrefix':            {'kind': 'f', 'menu': '[Node]', 'type': 'String' },
@@ -385,10 +385,10 @@ let s:domObject.Element = {
   \         'attributes':             {'kind': 'v', 'menu': '[Element]', 'type': 'NamedNodeMap' },
   \         'getAttribute':           {'kind': 'f', 'menu': '[Element]', 'type': 'String' },
   \         'getAttributeNS':         {'kind': 'f', 'menu': '[Element]', 'type': 'String' },
-  \         'setAttribute':           {'kind': 'f', 'menu': '[Element]' },
-  \         'setAttributeNS':         {'kind': 'f', 'menu': '[Element]' },
-  \         'removeAttribute':        {'kind': 'f', 'menu': '[Element]' },
-  \         'removeAttributeNS':      {'kind': 'f', 'menu': '[Element]' },
+  \         'setAttribute':           {'kind': 'f', 'menu': '[Element]', 'type': '' },
+  \         'setAttributeNS':         {'kind': 'f', 'menu': '[Element]', 'type': '' },
+  \         'removeAttribute':        {'kind': 'f', 'menu': '[Element]', 'type': '' },
+  \         'removeAttributeNS':      {'kind': 'f', 'menu': '[Element]', 'type': '' },
   \         'hasAttribute':           {'kind': 'f', 'menu': '[Element]', 'type': 'Boolean' },
   \         'hasAttributeNS':         {'kind': 'f', 'menu': '[Element]', 'type': 'Boolean' },
   \         'getElementsByTagName':   {'kind': 'f', 'menu': '[Element]', 'type': 'HTMLCollection' },
@@ -434,10 +434,10 @@ let s:domObject.CharacterData = {
   \         'data': {'kind': 'v', 'menu': '[CharacterData]', 'type': 'String' },
   \         'length': {'kind': 'v', 'menu': '[CharacterData]', 'type': 'Number' },
   \         'substringData': {'kind': 'f', 'menu': '[CharacterData]', 'type': 'String' },
-  \         'appendData':  {'kind': 'f', 'menu': '[CharacterData]' },
-  \         'insertData':  {'kind': 'f', 'menu': '[CharacterData]' },
-  \         'deleteData':  {'kind': 'f', 'menu': '[CharacterData]' },
-  \         'replaceData': {'kind': 'f', 'menu': '[CharacterData]' },
+  \         'appendData':  {'kind': 'f', 'menu': '[CharacterData]', 'type': '' },
+  \         'insertData':  {'kind': 'f', 'menu': '[CharacterData]', 'type': '' },
+  \         'deleteData':  {'kind': 'f', 'menu': '[CharacterData]', 'type': '' },
+  \         'replaceData': {'kind': 'f', 'menu': '[CharacterData]', 'type': '' },
   \         'before':      {'kind': 'f', 'menu': '[CharacterData] DOM level 4' },
   \         'after':       {'kind': 'f', 'menu': '[CharacterData] DOM level 4' },
   \         'replace':     {'kind': 'f', 'menu': '[CharacterData] DOM level 4' },
@@ -490,27 +490,27 @@ let s:domObject.Range = {
   \         'endOffset':               {'kind': 'v', 'menu': '[Range]', 'type': 'Number' },
   \         'collapsed':               {'kind': 'v', 'menu': '[Range]', 'type': 'Boolean' },
   \         'commonAncestorContainer': {'kind': 'v', 'menu': '[Range]', 'type': 'Node' },
-  \         'setStart':                {'kind': 'f', 'menu': '[Range]' },
-  \         'setEnd':                  {'kind': 'f', 'menu': '[Range]' },
-  \         'setStartBefore':          {'kind': 'f', 'menu': '[Range]' },
-  \         'setStartAfter':           {'kind': 'f', 'menu': '[Range]' },
-  \         'setEndBefore':            {'kind': 'f', 'menu': '[Range]' },
-  \         'setEndAfter':             {'kind': 'f', 'menu': '[Range]' },
-  \         'collapse':                {'kind': 'f', 'menu': '[Range]' },
-  \         'selectNode':              {'kind': 'f', 'menu': '[Range]' },
-  \         'selectNodeContents':      {'kind': 'f', 'menu': '[Range]' },
+  \         'setStart':                {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'setEnd':                  {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'setStartBefore':          {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'setStartAfter':           {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'setEndBefore':            {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'setEndAfter':             {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'collapse':                {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'selectNode':              {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'selectNodeContents':      {'kind': 'f', 'menu': '[Range]', 'type': '' },
   \         'START_TO_START':          {'kind': 'v', 'menu': '[Range] 0', 'type': 'Number' },
   \         'START_TO_END':            {'kind': 'v', 'menu': '[Range] 1', 'type': 'Number' },
   \         'END_TO_END':              {'kind': 'v', 'menu': '[Range] 2', 'type': 'Number' },
   \         'END_TO_START':            {'kind': 'v', 'menu': '[Range] 3', 'type': 'Number' },
   \         'compareBoundaryPoints':   {'kind': 'f', 'menu': '[Range]', 'type': 'Number' },
-  \         'deleteContents':          {'kind': 'f', 'menu': '[Range]' },
+  \         'deleteContents':          {'kind': 'f', 'menu': '[Range]', 'type': '' },
   \         'extractContents':         {'kind': 'f', 'menu': '[Range]', 'type': 'DocumentFragment' },
   \         'cloneContents':           {'kind': 'f', 'menu': '[Range]', 'type': 'DocumentFragment' },
-  \         'insertNode':              {'kind': 'f', 'menu': '[Range]' },
-  \         'surroundContents':        {'kind': 'f', 'menu': '[Range]' },
+  \         'insertNode':              {'kind': 'f', 'menu': '[Range]', 'type': '' },
+  \         'surroundContents':        {'kind': 'f', 'menu': '[Range]', 'type': '' },
   \         'cloneRange':              {'kind': 'f', 'menu': '[Range]', 'type': 'Range' },
-  \         'detach':                  {'kind': 'f', 'menu': '[Range]' },
+  \         'detach':                  {'kind': 'f', 'menu': '[Range]', 'type': '' },
   \         'isPointInRange':          {'kind': 'f', 'menu': '[Range]', 'type': 'Boolean' },
   \         'comparePoint':            {'kind': 'f', 'menu': '[Range]', 'type': 'Number' },
   \         'intersectsNode':          {'kind': 'f', 'menu': '[Range]', 'type': 'Number' },
@@ -531,7 +531,7 @@ let s:domObject.NodeIterator = {
   \         'filter':                     {'kind': 'v', 'menu': '[NodeIterator]', 'type': 'NodeFilter' },
   \         'nextNode':                   {'kind': 'f', 'menu': '[NodeIterator]', 'type': 'Node' },
   \         'previousNode':               {'kind': 'f', 'menu': '[NodeIterator]', 'type': 'Node' },
-  \         'detach':                     {'kind': 'f', 'menu': '[NodeIterator]' },
+  \         'detach':                     {'kind': 'f', 'menu': '[NodeIterator]', 'type': '' },
   \       }
   \     }
   \   }
@@ -619,8 +619,8 @@ let s:domObject.DOMTokenList = {
   \         'length':      {'kind': 'v', 'menu': '[DOMTokenList]', 'type': 'Number' },
   \         'item':        {'kind': 'f', 'menu': '[DOMTokenList]', 'type': 'String' },
   \         'contains':    {'kind': 'f', 'menu': '[DOMTokenList]', 'type': 'Boolean' },
-  \         'add':         {'kind': 'f', 'menu': '[DOMTokenList]' },
-  \         'remove':      {'kind': 'f', 'menu': '[DOMTokenList]' },
+  \         'add':         {'kind': 'f', 'menu': '[DOMTokenList]', 'type': '' },
+  \         'remove':      {'kind': 'f', 'menu': '[DOMTokenList]', 'type': '' },
   \         'toggle':      {'kind': 'f', 'menu': '[DOMTokenList]', 'type': 'Boolean' },
   \         'stringifier': {'kind': 'f', 'menu': '[DOMTokenList]', 'type': 'String' },
   \       }
@@ -681,16 +681,16 @@ let s:domObject.XMLHttpRequest = {
   \         'HEADERS_RECEIVED':      {'kind': 'v', 'menu': '[XMLHttpRequest] 2', 'type': 'Number'},
   \         'DONE':                  {'kind': 'v', 'menu': '[XMLHttpRequest] 3', 'type': 'Number'},
   \         'readyState':            {'kind': 'v', 'menu': '[XMLHttpRequest]',   'type': 'Number'},
-  \         'open':                  {'kind': 'f', 'menu': '[XMLHttpRequest]'},
-  \         'setRequestHeader':      {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'open':                  {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': ''},
+  \         'setRequestHeader':      {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': ''},
   \         'upload':                {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'XMLHttpRequestEventTarget'},
-  \         'send':                  {'kind': 'f', 'menu': '[XMLHttpRequest]'},
-  \         'abort':                 {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'send':                  {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': ''},
+  \         'abort':                 {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': ''},
   \         'status':                {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'Number'},
   \         'statusText':            {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'String'},
   \         'getResponseHeader':     {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': 'String'},
   \         'getAllResponseHeaders': {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': 'String'},
-  \         'overrideMimeType':      {'kind': 'f', 'menu': '[XMLHttpRequest]'},
+  \         'overrideMimeType':      {'kind': 'f', 'menu': '[XMLHttpRequest]', 'type': ''},
   \         'responseType':          {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'String'},
   \         'response':              {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'Object'},
   \         'responseText':          {'kind': 'v', 'menu': '[XMLHttpRequest]', 'type': 'String'},
@@ -705,7 +705,7 @@ let s:domObject.FormData = {
   \   'kind': 'f', 'type': 'FormData', 'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'props': {
-  \         'append': {'kind': 'f', 'menu': '[FormData]'},
+  \         'append': {'kind': 'f', 'menu': '[FormData]', 'type': ''},
   \       }
   \     }
   \   }
@@ -727,9 +727,9 @@ let s:html5.Window = {
   \         'location':          {'kind': 'v', 'menu': '[Window]', 'type': 'Location' },
   \         'history':           {'kind': 'v', 'menu': '[Window]', 'type': 'History' },
   \         'getSelection':      {'kind': 'f', 'menu': '[Window]', 'type': 'Selection' },
-  \         'close':             {'kind': 'f', 'menu': '[Window]' },
-  \         'focus':             {'kind': 'f', 'menu': '[Window]' },
-  \         'blur':              {'kind': 'f', 'menu': '[Window]' },
+  \         'close':             {'kind': 'f', 'menu': '[Window]', 'type': '' },
+  \         'focus':             {'kind': 'f', 'menu': '[Window]', 'type': '' },
+  \         'blur':              {'kind': 'f', 'menu': '[Window]', 'type': '' },
   \         'frames':            {'kind': 'v', 'menu': '[Window]', 'type': 'Window' },
   \         'length':            {'kind': 'v', 'menu': '[Window]', 'type': 'Number' },
   \         'top':               {'kind': 'v', 'menu': '[Window]', 'type': 'Window' },
@@ -740,12 +740,12 @@ let s:html5.Window = {
   \         'navigator':         {'kind': 'v', 'menu': '[Window]', 'type': 'Navigator' },
   \         'external':          {'kind': 'v', 'menu': '[Window]', 'type': 'External' },
   \         'applicationCache':  {'kind': 'v', 'menu': '[Window]', 'type': 'ApplicationCache' },
-  \         'alert':             {'kind': 'f', 'menu': '[Window]' },
+  \         'alert':             {'kind': 'f', 'menu': '[Window]', 'type': '' },
   \         'confirm':           {'kind': 'f', 'menu': '[Window]', 'type': 'Boolean' },
   \         'prompt':            {'kind': 'f', 'menu': '[Window]', 'type': 'String' },
-  \         'print':             {'kind': 'f', 'menu': '[Window]' },
+  \         'print':             {'kind': 'f', 'menu': '[Window]', 'type': '' },
   \         'showModalDialog':   {'kind': 'f', 'menu': '[Window]', 'type': '' },
-  \         'postMessage':       {'kind': 'f', 'menu': '[Window]' },
+  \         'postMessage':       {'kind': 'f', 'menu': '[Window]', 'type': '' },
   \         'onabort':           {'kind': 'v', 'menu': '[Window]', 'type': 'Function'},
   \         'onafterprint':      {'kind': 'v', 'menu': '[Window]', 'type': 'Function'},
   \         'onbeforeprint':     {'kind': 'v', 'menu': '[Window]', 'type': 'Function'},
@@ -840,9 +840,9 @@ let s:html5.Document = {
   \         'forms':                 {'kind': 'v', 'menu': '[HTML5 Document]', 'type': 'HTMLCollection'},
   \         'scripts':               {'kind': 'v', 'menu': '[HTML5 Document]', 'type': 'HTMLCollection'},
   \         'open':                  {'kind': 'f', 'menu': '[HTML5 Document]', 'type': 'Window'},
-  \         'close':                 {'kind': 'f', 'menu': '[HTML5 Document]'},
-  \         'write':                 {'kind': 'f', 'menu': '[HTML5 Document]'},
-  \         'writeln':               {'kind': 'f', 'menu': '[HTML5 Document]'},
+  \         'close':                 {'kind': 'f', 'menu': '[HTML5 Document]', 'type': ''},
+  \         'write':                 {'kind': 'f', 'menu': '[HTML5 Document]', 'type': ''},
+  \         'writeln':               {'kind': 'f', 'menu': '[HTML5 Document]', 'type': ''},
   \         'defaultView':           {'kind': 'v', 'menu': '[HTML5 Document]', 'type': 'Window'},
   \         'activeElement':         {'kind': 'v', 'menu': '[HTML5 Document]', 'type': 'Element'},
   \         'hasFocus':              {'kind': 'f', 'menu': '[HTML5 Document]', 'type': 'Boolean'},
@@ -914,11 +914,11 @@ let s:html5.History = {
   \       'kind': 'v', 'type': 'Object', 'props': {
   \         'length':       {'kind': 'v', 'menu': '[History]', 'type': 'Number'},
   \         'state':        {'kind': 'v', 'menu': '[History]', 'type': 'Object'},
-  \         'go':           {'kind': 'f', 'menu': '[History]'},
-  \         'back':         {'kind': 'f', 'menu': '[History]'},
-  \         'forward':      {'kind': 'f', 'menu': '[History]'},
-  \         'pushState':    {'kind': 'f', 'menu': '[History]'},
-  \         'replaceState': {'kind': 'f', 'menu': '[History]'},
+  \         'go':           {'kind': 'f', 'menu': '[History]', 'type': ''},
+  \         'back':         {'kind': 'f', 'menu': '[History]', 'type': ''},
+  \         'forward':      {'kind': 'f', 'menu': '[History]', 'type': ''},
+  \         'pushState':    {'kind': 'f', 'menu': '[History]', 'type': ''},
+  \         'replaceState': {'kind': 'f', 'menu': '[History]', 'type': ''},
   \       }
   \     }
   \   }
@@ -930,9 +930,9 @@ let s:html5.Location = {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'props': {
   \         'href':     {'kind': 'v', 'menu': '[Location]', 'type': 'String'},
-  \         'assign':   {'kind': 'f', 'menu': '[Location]'},
-  \         'replace':  {'kind': 'f', 'menu': '[Location]'},
-  \         'reload':   {'kind': 'f', 'menu': '[Location]'},
+  \         'assign':   {'kind': 'f', 'menu': '[Location]', 'type': ''},
+  \         'replace':  {'kind': 'f', 'menu': '[Location]', 'type': ''},
+  \         'reload':   {'kind': 'f', 'menu': '[Location]', 'type': ''},
   \         'protocol': {'kind': 'f', 'menu': '[Location]', 'type': 'String'},
   \         'host':     {'kind': 'f', 'menu': '[Location]', 'type': 'String'},
   \         'hostname': {'kind': 'f', 'menu': '[Location]', 'type': 'String'},
@@ -971,7 +971,7 @@ let s:html5.External = {
   \   'kind': 'v', 'type': 'Object', 'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'props': {
-  \         'AddSearchProvider':         {'kind': 'f', 'menu': '[External]'},
+  \         'AddSearchProvider':         {'kind': 'f', 'menu': '[External]', 'type': ''},
   \         'IsSearchProviderInstalled': {'kind': 'f', 'menu': '[External]', 'type': 'Number'},
   \       }
   \     }
@@ -990,9 +990,9 @@ let s:html5.ApplicationCache = {
   \         'UPDATEREADY':   {'kind': 'v', 'menu': '[ApplicationCache] 4', 'type': 'Number'},
   \         'OBSOLETE':      {'kind': 'v', 'menu': '[ApplicationCache] 5', 'type': 'Number'},
   \         'state':         {'kind': 'v', 'menu': '[ApplicationCache]', 'type': 'Number'},
-  \         'update':        {'kind': 'f', 'menu': '[ApplicationCache]'},
-  \         'abort':         {'kind': 'f', 'menu': '[ApplicationCache]'},
-  \         'swapCache':     {'kind': 'f', 'menu': '[ApplicationCache]'},
+  \         'update':        {'kind': 'f', 'menu': '[ApplicationCache]', 'type': ''},
+  \         'abort':         {'kind': 'f', 'menu': '[ApplicationCache]', 'type': ''},
+  \         'swapCache':     {'kind': 'f', 'menu': '[ApplicationCache]', 'type': ''},
   \         'onchecking':    {'kind': 'v', 'menu': '[ApplicationCache]', 'type': 'Function'},
   \         'onerror':       {'kind': 'v', 'menu': '[ApplicationCache]', 'type': 'Function'},
   \         'onnoupdate':    {'kind': 'v', 'menu': '[ApplicationCache]', 'type': 'Function'},
@@ -1016,16 +1016,16 @@ let s:html5.Selection = {
   \         'focusNode':          {'kind': 'v', 'menu': '[Selection]', 'type': 'Node'},
   \         'focusOffset':        {'kind': 'v', 'menu': '[Selection]', 'type': 'Number'},
   \         'isCollapsed':        {'kind': 'v', 'menu': '[Selection]', 'type': 'Boolean'},
-  \         'collapse':           {'kind': 'f', 'menu': '[Selection]'},
-  \         'collapseToStart':    {'kind': 'f', 'menu': '[Selection]'},
-  \         'collapseToEnd':      {'kind': 'f', 'menu': '[Selection]'},
-  \         'selectAllChildren':  {'kind': 'f', 'menu': '[Selection]'},
-  \         'deleteFromDocument': {'kind': 'f', 'menu': '[Selection]'},
+  \         'collapse':           {'kind': 'f', 'menu': '[Selection]', 'type': ''},
+  \         'collapseToStart':    {'kind': 'f', 'menu': '[Selection]', 'type': ''},
+  \         'collapseToEnd':      {'kind': 'f', 'menu': '[Selection]', 'type': ''},
+  \         'selectAllChildren':  {'kind': 'f', 'menu': '[Selection]', 'type': ''},
+  \         'deleteFromDocument': {'kind': 'f', 'menu': '[Selection]', 'type': ''},
   \         'rangeCount':         {'kind': 'v', 'menu': '[Selection]', 'type': 'Number'},
   \         'getRangeAt':         {'kind': 'f', 'menu': '[Selection]', 'type': 'Range'},
-  \         'addRange':           {'kind': 'f', 'menu': '[Selection]'},
-  \         'removeRange':        {'kind': 'f', 'menu': '[Selection]'},
-  \         'removeAllRanges':    {'kind': 'f', 'menu': '[Selection]'},
+  \         'addRange':           {'kind': 'f', 'menu': '[Selection]', 'type': ''},
+  \         'removeRange':        {'kind': 'f', 'menu': '[Selection]', 'type': ''},
+  \         'removeAllRanges':    {'kind': 'f', 'menu': '[Selection]', 'type': ''},
   \       }
   \     }
   \   }

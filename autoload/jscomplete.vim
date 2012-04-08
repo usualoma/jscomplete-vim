@@ -883,6 +883,7 @@ endfunction
 " Dict s:ParseExpression (Dict::position) {{{1
 function s:ParseExpression (position, pri)
   let tokens = s:ParseTokens(a:position.start, a:position.end, a:pri)
+  call cursor(a:position.start[0], a:position.start[1])
   let [i, results] = s:ParseExpression2(tokens, 0)
   return get(results, -1, {})
 endfunction

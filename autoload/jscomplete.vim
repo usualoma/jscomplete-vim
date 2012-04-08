@@ -179,7 +179,7 @@ let s:GlobalObject.Number = {
   \     'MAX_VALUE':         {'kind': 'v', 'type': 'NUmber' },
   \     'MIN_VALUE':         {'kind': 'v', 'type': 'Number' },
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Number]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Number]', 'class': 'Number',
   \       'props': {
   \         'toExponential': {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String' },
   \         'toFixed':       {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String' },

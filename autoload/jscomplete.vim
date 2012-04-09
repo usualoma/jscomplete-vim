@@ -464,6 +464,49 @@ let s:GlobalObject.isFinite = {
   \   'kind': 'f', 'type': 'Boolean', 'menu': 'built-in function'
   \ }
 " 2}}}
+" ECMAScript 6th {{{2
+let s:GlobalObject.WeakMap = {
+  \   'kind': 'f', 'type': 'WeakMap', 'menu': '[WeakMap]',
+  \   'props': {
+  \     'prototype': {
+  \       'kind': 'v', 'type': 'Object', 'menu': '[WeakMap]',
+  \       'props': {
+  \         'delete': {'kind': 'f', 'menu': '[WeakMap]', 'type': 'Boolean'},
+  \         'get':    {'kind': 'f', 'menu': '[WeakMap]'},
+  \         'has':    {'kind': 'f', 'menu': '[WeakMap]', 'type': 'Boolean'},
+  \         'set':    {'kind': 'f', 'menu': '[WeakMap]', 'type': ''},
+  \       }
+  \     }
+  \   }
+  \ }
+let s:GlobalObject.Set = {
+  \   'kind': 'f', 'type': 'Set', 'menu': '[Set]',
+  \   'props': {
+  \     'prototype': {
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Set]',
+  \       'props': {
+  \         'add':    {'kind': 'f', 'menu': '[Set]', 'type': ''},
+  \         'delete': {'kind': 'f', 'menu': '[Set]', 'type': 'Boolean'},
+  \         'has':    {'kind': 'f', 'menu': '[Set]', 'type': 'Boolean'},
+  \       }
+  \     }
+  \   }
+  \ }
+let s:GlobalObject.Map = {
+  \   'kind': 'f', 'type': 'Map', 'menu': '[Map]',
+  \   'props': {
+  \     'prototype': {
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Map]',
+  \       'props': {
+  \         'get':    {'kind': 'f', 'menu': '[Map]'},
+  \         'delete': {'kind': 'f', 'menu': '[Map]', 'type': 'Boolean'},
+  \         'has':    {'kind': 'f', 'menu': '[Map]', 'type': 'Boolean'},
+  \         'set':    {'kind': 'f', 'menu': '[Map]', 'type': ''},
+  \       }
+  \     }
+  \   }
+  \ }
+" 2}}}
 " 1}}}
 " s:Keywords {{{1
 let s:Keywords = [

@@ -424,9 +424,44 @@ let s:GlobalObject.arguments = {
   \   }
   \ }
 " 2}}}
+" NaN {{{2
+let s:GlobalObject.NaN = {
+  \   'kind': 'v', 'type': 'Number'
+  \ }
+" 2}}}
+" Infinity {{{2
+let s:GlobalObject.Infinity = {
+  \   'kind': 'v', 'type': 'Number'
+  \ }
+" 2}}}
 " undefined {{{2
 let s:GlobalObject.undefined = {
   \   'kind': 'v', 'props': {}
+  \ }
+" 2}}}
+" eval {{{2
+let s:GlobalObject.eval = {
+  \   'kind': 'f', 'menu': 'eval is evil !!'
+  \ }
+" 2}}}
+" parseInt {{{2
+let s:GlobalObject.parseInt = {
+  \   'kind': 'f', 'type': 'Number', 'menu': 'built-in function'
+  \ }
+" 2}}}
+" parseFloat {{{2
+let s:GlobalObject.parseFloat = {
+  \   'kind': 'f', 'type': 'Number', 'menu': 'built-in function'
+  \ }
+" 2}}}
+" isNaN {{{2
+let s:GlobalObject.isNaN = {
+  \   'kind': 'f', 'type': 'Boolean', 'menu': 'built-in function'
+  \ }
+" 2}}}
+" isFinite {{{2
+let s:GlobalObject.isFinite = {
+  \   'kind': 'f', 'type': 'Boolean', 'menu': 'built-in function'
   \ }
 " 2}}}
 " 1}}}

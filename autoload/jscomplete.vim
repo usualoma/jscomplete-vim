@@ -511,14 +511,28 @@ function! jscomplete#CompleteJS(findstart, base)
   let postfix = ''
   if shortcontext =~ '\.$'
     let target = s:ParseCurrentExpression(shortcontext[: col -2], currentLine)
-  elseif shortcontext =~ '\[$' && a:base =~ '^\s*["'']\?'
-    let quote = '"'
-    if a:base =~ '^\s*'''
-      let quote = ''''
+  elseif shortcontext =~ '\[$'
+    if a:base =~ '^\s*["'']'
+      let quote = '"'
+      if a:base =~ '^\s*'''
+        let quote = ''''
+      endif
+      let prefix = quote
+      let postfix = quote .']'
+      let target = s:ParseCurrentExpression(shortcontext[: col -2], currentLine)
+    else
+      let target = {'props': b:GlobalObject}
     endif
-    let prefix = quote
-    let postfix = quote .']'
-    let target = s:ParseCurrentExpression(shortcontext[: col -2], currentLine)
+  else
+    let tokens = s:FixTokens(s:GetCurrentLHSTokens(shortcontext, currentLine, [], 0))
+    if len(tokens) == 0
+      let target = {'props': b:GlobalObject}
+    else
+      let token = tokens[-1]
+      if token.type == 'keyword' && token.name == 'new'
+        let target = {'props': b:GlobalObject}
+      endif
+    endif
   endif
   if exists('target') && !empty(target)
     return s:ConvertCompleteWords(s:GetProperties(target), a:base, prefix, postfix)

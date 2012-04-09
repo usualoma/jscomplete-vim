@@ -477,8 +477,8 @@ function! jscomplete#CompleteJS(findstart, base)
     let compl_begin = col('.') - 2
     " Bit risky but JS is rather limited language and local chars shouldn't
     " fint way into names
-    if synIDattr(synID(curline, start, ''), 'name') == 'javaScriptStringD'
-      while start >= 0 && synIDattr(synID(curline, start, ''), 'name') == 'javaScriptStringD'
+    if synIDattr(synID(curline, start, ''), 'name') =~ '^javaScriptString'
+      while start >= 0 && synIDattr(synID(curline, start, ''), 'name') =~ '^javaScriptString'
         let start -= 1
       endwhile
     else

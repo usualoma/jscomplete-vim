@@ -9,7 +9,7 @@ set cpo&vim
 let s:GlobalObject = {}
 " Object {{{2
 let s:GlobalObject.Object = {
-  \   'kind': 'f', 'type': 'Object',
+  \   'kind': 'f', 'type': 'Object', 'menu': '[Object]',
   \   'props': {
   \     'create':                   {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
   \     'defineProperties':         {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
@@ -43,7 +43,7 @@ let s:GlobalObject.Object = {
 " 2}}}
 " Function {{{2
 let s:GlobalObject.Function = {
-  \   'kind': 'f', 'type': 'Function',
+  \   'kind': 'f', 'type': 'Function', 'menu': '[Function]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Function]',
@@ -64,7 +64,7 @@ let s:GlobalObject.Function = {
 " 2}}}
 " Array {{{2
 let s:GlobalObject.Array = {
-  \   'kind': 'f', 'type': 'Array',
+  \   'kind': 'f', 'type': 'Array', 'menu': '[Array]',
   \   'props': {
   \     'concat':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
   \     'every':       {'kind': 'f', 'menu': '[Array]', 'type': 'Boolean' },
@@ -117,7 +117,7 @@ let s:GlobalObject.Array = {
 " 2}}}
 " String {{{2
 let s:GlobalObject.String = {
-  \   'kind': 'f', 'type': 'String',
+  \   'kind': 'f', 'type': 'String', 'menu': '[String]',
   \   'props': {
   \     'charAt':            {'kind': 'f', 'menu': '[String]', 'type': 'String' },
   \     'charCodeAt':        {'kind': 'f', 'menu': '[String]', 'type': 'Number' },
@@ -171,7 +171,7 @@ let s:GlobalObject.String = {
 " 2}}}
 " Number {{{2
 let s:GlobalObject.Number = {
-  \   'kind': 'f', 'type': 'Number',
+  \   'kind': 'f', 'type': 'Number', 'menu': '[Number]',
   \   'props': {
   \     'NaN':               {'kind': 'v', 'type': 'Number' },
   \     'POSITIVE_INFINITY': {'kind': 'v', 'type': 'Number' },
@@ -191,7 +191,7 @@ let s:GlobalObject.Number = {
 " 2}}}
 " Date {{{2
 let s:GlobalObject.Date = {
-  \   'kind': 'f', 'type': 'String', 'newType': 'Date',
+  \   'kind': 'f', 'type': 'String', 'newType': 'Date', 'menu': '[Date]',
   \   'props': {
   \     'now':   {'kind': 'f', 'menu': '[Date]', 'type': 'Number' },
   \     'parse': {'kind': 'f', 'menu': '[Date]', 'type': 'Number' },
@@ -253,7 +253,7 @@ let s:GlobalObject.Date = {
 " 2}}}
 " Math {{{2
 let s:GlobalObject.Math = {
-  \   'kind': 'v', 'type': 'Object',
+  \   'kind': 'v', 'type': 'Object', 'menu': '[Math]',
   \   'props': {
   \     'abs':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
   \     'acos':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
@@ -286,7 +286,7 @@ let s:GlobalObject.Math = {
 " 2}}}
 " RegExp {{{2
 let s:GlobalObject.RegExp = {
-  \   'kind': 'f', 'type': 'RegExp',
+  \   'kind': 'f', 'type': 'RegExp', 'menu': '[RegExp]',
   \   'props': {
   \     '$_':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
   \     '$1':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
@@ -323,7 +323,7 @@ let s:GlobalObject.RegExp = {
 " 2}}}
 " Boolean {{{2
 let s:GlobalObject.Boolean = {
-  \   'kind': 'f', 'type': 'Boolean',
+  \   'kind': 'f', 'type': 'Boolean', 'menu': '[Boolean]',
   \   'props': {
   \     'prototype': {'kind': 'v', 'type': 'Object', 'menu': '[Boolean]', 'props': {}}
   \   }
@@ -331,7 +331,7 @@ let s:GlobalObject.Boolean = {
 " 2}}}
 " Error {{{2
 let s:GlobalObject.Error = {
-  \   'kind': 'f', 'type': 'Error',
+  \   'kind': 'f', 'type': 'Error', 'menu': '[Error]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]',
@@ -347,7 +347,7 @@ let s:GlobalObject.Error = {
 " 2}}}
 " EvalError {{{2
 let s:GlobalObject.EvalError = {
-  \   'kind': 'f', 'type': 'Error',
+  \   'kind': 'f', 'type': 'Error', 'menu': '[EvalError]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
@@ -357,7 +357,7 @@ let s:GlobalObject.EvalError = {
 " 2}}}
 " RangeError {{{2
 let s:GlobalObject.RangeError = {
-  \   'kind': 'f', 'type': 'Error',
+  \   'kind': 'f', 'type': 'Error', 'menu': '[RangeError]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
@@ -367,7 +367,7 @@ let s:GlobalObject.RangeError = {
 " 2}}}
 " ReferenceError {{{2
 let s:GlobalObject.ReferenceError = {
-  \   'kind': 'f', 'type': 'Error',
+  \   'kind': 'f', 'type': 'Error', 'menu': '[ReferenceError]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
@@ -377,7 +377,7 @@ let s:GlobalObject.ReferenceError = {
 " 2}}}
 " SyntaxError {{{2
 let s:GlobalObject.SyntaxError = {
-  \   'kind': 'f', 'type': 'Error',
+  \   'kind': 'f', 'type': 'Error', 'menu': '[SyntaxError]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
@@ -387,7 +387,7 @@ let s:GlobalObject.SyntaxError = {
 " 2}}}
 " TypeError {{{2
 let s:GlobalObject.TypeError = {
-  \   'kind': 'f', 'type': 'Error',
+  \   'kind': 'f', 'type': 'Error', 'menu': '[TypeError]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
@@ -397,7 +397,7 @@ let s:GlobalObject.TypeError = {
 " 2}}}
 " URIError {{{2
 let s:GlobalObject.URIError = {
-  \   'kind': 'f', 'type': 'Error',
+  \   'kind': 'f', 'type': 'Error', 'menu': '[URIError]',
   \   'props': {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
@@ -407,7 +407,7 @@ let s:GlobalObject.URIError = {
 " 2}}}
 " JSON {{{2
 let s:GlobalObject.JSON = {
-  \   'kind': 'v', 'type': 'Object',
+  \   'kind': 'v', 'type': 'Object', 'menu': '[JSON]',
   \   'props': {
   \     'stringify': {'kind': 'f', 'menu': '[JSON]', 'type': 'String' },
   \     'parse':     {'kind': 'f', 'menu': '[JSON]', 'type': 'Object' },
@@ -416,7 +416,7 @@ let s:GlobalObject.JSON = {
 " 2}}}
 " arguments {{{2
 let s:GlobalObject.arguments = {
-  \   'kind': 'v', 'type': 'Object',
+  \   'kind': 'v', 'type': 'Object', 'menu': '[arguments]',
   \   'props': {
   \     'length': {'kind': 'v', 'menu': '[arguments]', 'type': 'Number' },
   \     'callee': {'kind': 'v', 'menu': '[arguments]', 'type': 'Function' },

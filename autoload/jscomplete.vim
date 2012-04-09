@@ -857,7 +857,7 @@ function s:EvalCall (target, isNewExpression)
   if get(a:target, 'kind', '') == 'f'
     if a:isNewExpression > 0
       if has_key(a:target, 'newType') && has_key(b:GlobalObject, a:target.newType)
-        let constructor = b:GlobalObject[target.newType]
+        let constructor = b:GlobalObject[a:target.newType]
       elseif has_key(a:target, 'type') && has_key(b:GlobalObject, a:target.type)
         let constructor = b:GlobalObject[a:target.type]
       else

@@ -94,7 +94,6 @@ let s:GlobalObject.Array = {
   \         'filter':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
   \         'forEach':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': '' },
   \         'indexOf':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number' },
-  \         'isArray':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Boolean' },
   \         'join':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'String' },
   \         'lastIndexOf': {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number' },
   \         'length':      {'kind': 'v', 'menu': '[Array.prototype]', 'type': 'Number' },

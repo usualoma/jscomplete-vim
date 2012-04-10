@@ -11,31 +11,31 @@ let s:GlobalObject = {}
 let s:GlobalObject.Object = {
   \   'kind': 'f', 'type': 'Object', 'menu': '[Object]',
   \   'props': {
-  \     'create':                   {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
-  \     'defineProperties':         {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
-  \     'defineProperty':           {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
-  \     'freeze':                   {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
-  \     'getOwnPropertyDescriptor': {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
-  \     'getOwnPropertyNames':      {'kind': 'f', 'menu': '[Object]', 'type': 'Array' },
-  \     'getPrototypeOf':           {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean' },
-  \     'isExtensible':             {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean' },
-  \     'isForzen':                 {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean' },
-  \     'isSealed':                 {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean' },
-  \     'keys':                     {'kind': 'f', 'menu': '[Object]', 'type': 'Array' },
-  \     'preventExtensions':        {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
-  \     'seal':                     {'kind': 'f', 'menu': '[Object]', 'type': 'Object' },
+  \     'create':                   {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
+  \     'defineProperties':         {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
+  \     'defineProperty':           {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
+  \     'freeze':                   {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
+  \     'getOwnPropertyDescriptor': {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
+  \     'getOwnPropertyNames':      {'kind': 'f', 'menu': '[Object]', 'type': 'Array'},
+  \     'getPrototypeOf':           {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean'},
+  \     'isExtensible':             {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean'},
+  \     'isForzen':                 {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean'},
+  \     'isSealed':                 {'kind': 'f', 'menu': '[Object]', 'type': 'Boolean'},
+  \     'keys':                     {'kind': 'f', 'menu': '[Object]', 'type': 'Array'},
+  \     'preventExtensions':        {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
+  \     'seal':                     {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
   \     'prototype': {
   \       'kind': 'v', 'menu': '[Object]',
   \       'props': {
-  \         'constructor':          {'kind': 'v', 'menu': 'ObjectConstructor',  'type': 'Function' },
-  \         'hasOwnProperty':       {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Boolean' },
-  \         'isPrototypeOf':        {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Boolean' },
-  \         'propertyIsEnumerable': {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Boolean' },
-  \         'toLocaleString':       {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'String' },
-  \         'toString':             {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'String' },
-  \         'unwatch':              {'kind': 'f', 'menu': '[Object.prototype]', 'type': '' },
-  \         'valueof':              {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Object' },
-  \         'watch':                {'kind': 'f', 'menu': '[Object.prototype]', 'type': '' },
+  \         'constructor':          {'kind': 'v', 'menu': 'ObjectConstructor',  'type': 'Function'},
+  \         'hasOwnProperty':       {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Boolean'},
+  \         'isPrototypeOf':        {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Boolean'},
+  \         'propertyIsEnumerable': {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Boolean'},
+  \         'toLocaleString':       {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'String'},
+  \         'toString':             {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'String'},
+  \         'unwatch':              {'kind': 'f', 'menu': '[Object.prototype]', 'type': ''},
+  \         'valueof':              {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Object'},
+  \         'watch':                {'kind': 'f', 'menu': '[Object.prototype]', 'type': ''},
   \       }
   \     }
   \   }
@@ -48,15 +48,15 @@ let s:GlobalObject.Function = {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Function]',
   \       'props': {
-  \         'apply':       {'kind': 'f', 'menu': '[Function.prototype]', },
-  \         'arguments':   {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'arguments' },
-  \         'bind':        {'kind': 'f', 'menu': '[Function.prototype]', 'type': 'Function' },
-  \         'call':        {'kind': 'f', 'menu': '[Function.prototype]', },
-  \         'caller':      {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'Function' },
-  \         'constructor': {'kind': 'v', 'menu': 'FunctionConstructor',  'type': 'Function' },
-  \         'length':      {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'Number' },
-  \         'name':        {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'String' },
-  \         'prototype':   {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'Object' },
+  \         'apply':       {'kind': 'f', 'menu': '[Function.prototype]'},
+  \         'arguments':   {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'arguments'},
+  \         'bind':        {'kind': 'f', 'menu': '[Function.prototype]', 'type': 'Function'},
+  \         'call':        {'kind': 'f', 'menu': '[Function.prototype]'},
+  \         'caller':      {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'Function'},
+  \         'constructor': {'kind': 'v', 'menu': 'FunctionConstructor',  'type': 'Function'},
+  \         'length':      {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'Number'},
+  \         'name':        {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'String'},
+  \         'prototype':   {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'Object'},
   \       }
   \     }
   \   }
@@ -66,49 +66,49 @@ let s:GlobalObject.Function = {
 let s:GlobalObject.Array = {
   \   'kind': 'f', 'type': 'Array', 'menu': '[Array]',
   \   'props': {
-  \     'concat':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
-  \     'every':       {'kind': 'f', 'menu': '[Array]', 'type': 'Boolean' },
-  \     'filter':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
-  \     'forEach':     {'kind': 'f', 'menu': '[Array]', 'type': '' },
-  \     'indexOf':     {'kind': 'f', 'menu': '[Array]', 'type': 'Number' },
-  \     'isArray':     {'kind': 'f', 'menu': '[Array]', 'type': 'Boolean' },
-  \     'join':        {'kind': 'f', 'menu': '[Array]', 'type': 'String' },
-  \     'lastIndexOf': {'kind': 'f', 'menu': '[Array]', 'type': 'Number' },
-  \     'map':         {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
-  \     'pop':         {'kind': 'f', 'menu': '[Array]', 'type': 'Object' },
-  \     'push':        {'kind': 'f', 'menu': '[Array]', 'type': 'Number' },
-  \     'reduce':      {'kind': 'f', 'menu': '[Array]', },
-  \     'reduceRight': {'kind': 'f', 'menu': '[Array]', },
-  \     'reverse':     {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
-  \     'shift':       {'kind': 'f', 'menu': '[Array]', },
-  \     'slice':       {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
-  \     'some':        {'kind': 'f', 'menu': '[Array]', 'type': 'Boolean' },
-  \     'sort':        {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
-  \     'splice':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array' },
+  \     'concat':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
+  \     'every':       {'kind': 'f', 'menu': '[Array]', 'type': 'Boolean'},
+  \     'filter':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
+  \     'forEach':     {'kind': 'f', 'menu': '[Array]', 'type': ''},
+  \     'indexOf':     {'kind': 'f', 'menu': '[Array]', 'type': 'Number'},
+  \     'isArray':     {'kind': 'f', 'menu': '[Array]', 'type': 'Boolean'},
+  \     'join':        {'kind': 'f', 'menu': '[Array]', 'type': 'String'},
+  \     'lastIndexOf': {'kind': 'f', 'menu': '[Array]', 'type': 'Number'},
+  \     'map':         {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
+  \     'pop':         {'kind': 'f', 'menu': '[Array]', 'type': 'Object'},
+  \     'push':        {'kind': 'f', 'menu': '[Array]', 'type': 'Number'},
+  \     'reduce':      {'kind': 'f', 'menu': '[Array]'},
+  \     'reduceRight': {'kind': 'f', 'menu': '[Array]'},
+  \     'reverse':     {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
+  \     'shift':       {'kind': 'f', 'menu': '[Array]'},
+  \     'slice':       {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
+  \     'some':        {'kind': 'f', 'menu': '[Array]', 'type': 'Boolean'},
+  \     'sort':        {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
+  \     'splice':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
   \     'unshift':     {'kind': 'f', 'menu': '[Array]', 'type': 'Number'},
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Array]',
   \       'props': {
-  \         'concat':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
-  \         'every':       {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Boolean' },
-  \         'filter':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
-  \         'forEach':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': '' },
-  \         'indexOf':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number' },
-  \         'join':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'String' },
-  \         'lastIndexOf': {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number' },
-  \         'length':      {'kind': 'v', 'menu': '[Array.prototype]', 'type': 'Number' },
-  \         'map':         {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
-  \         'pop':         {'kind': 'f', 'menu': '[Array.prototype]', },
-  \         'push':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number' },
-  \         'recude':      {'kind': 'f', 'menu': '[Array.prototype]', },
-  \         'recudeRight': {'kind': 'f', 'menu': '[Array.prototype]', },
-  \         'reverse':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
-  \         'shift':       {'kind': 'f', 'menu': '[Array.prototype]', },
-  \         'slice':       {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
-  \         'some':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Boolean' },
-  \         'sort':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
-  \         'splice':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array' },
-  \         'unshift':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number' },
+  \         'concat':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
+  \         'every':       {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Boolean'},
+  \         'filter':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
+  \         'forEach':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': ''},
+  \         'indexOf':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number'},
+  \         'join':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'String'},
+  \         'lastIndexOf': {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number'},
+  \         'length':      {'kind': 'v', 'menu': '[Array.prototype]', 'type': 'Number'},
+  \         'map':         {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
+  \         'pop':         {'kind': 'f', 'menu': '[Array.prototype]'},
+  \         'push':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number'},
+  \         'recude':      {'kind': 'f', 'menu': '[Array.prototype]'},
+  \         'recudeRight': {'kind': 'f', 'menu': '[Array.prototype]'},
+  \         'reverse':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
+  \         'shift':       {'kind': 'f', 'menu': '[Array.prototype]'},
+  \         'slice':       {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
+  \         'some':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Boolean'},
+  \         'sort':        {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
+  \         'splice':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
+  \         'unshift':     {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Number'},
   \       }
   \     }
   \   }
@@ -118,51 +118,51 @@ let s:GlobalObject.Array = {
 let s:GlobalObject.String = {
   \   'kind': 'f', 'type': 'String', 'menu': '[String]',
   \   'props': {
-  \     'charAt':            {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'charCodeAt':        {'kind': 'f', 'menu': '[String]', 'type': 'Number' },
-  \     'concat':            {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'fromCharCode':      {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'indexOf':           {'kind': 'f', 'menu': '[String]', 'type': 'Number' },
-  \     'lastIndexOf':       {'kind': 'f', 'menu': '[String]', 'type': 'Number' },
-  \     'localeCompare':     {'kind': 'f', 'menu': '[String]', 'type': 'Number' },
-  \     'match':             {'kind': 'f', 'menu': '[String]', 'type': 'Array' },
+  \     'charAt':            {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'charCodeAt':        {'kind': 'f', 'menu': '[String]', 'type': 'Number'},
+  \     'concat':            {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'fromCharCode':      {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'indexOf':           {'kind': 'f', 'menu': '[String]', 'type': 'Number'},
+  \     'lastIndexOf':       {'kind': 'f', 'menu': '[String]', 'type': 'Number'},
+  \     'localeCompare':     {'kind': 'f', 'menu': '[String]', 'type': 'Number'},
+  \     'match':             {'kind': 'f', 'menu': '[String]', 'type': 'Array'},
   \     'quote':             {'kind': 'f', 'menu': '[String]', 'type': 'Array'},
-  \     'replace':           {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'search':            {'kind': 'f', 'menu': '[String]', 'type': 'Number' },
-  \     'slice':             {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'split':             {'kind': 'f', 'menu': '[String]', 'type': 'Array' },
-  \     'substr':            {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'substring':         {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'toLocaleLowerCase': {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'toLocaleUpperCase': {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'toLowerCase':       {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'toUpperCase':       {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'trim':              {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'trimLeft':          {'kind': 'f', 'menu': '[String]', 'type': 'String' },
-  \     'trimRight':         {'kind': 'f', 'menu': '[String]', 'type': 'String' },
+  \     'replace':           {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'search':            {'kind': 'f', 'menu': '[String]', 'type': 'Number'},
+  \     'slice':             {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'split':             {'kind': 'f', 'menu': '[String]', 'type': 'Array'},
+  \     'substr':            {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'substring':         {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'toLocaleLowerCase': {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'toLocaleUpperCase': {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'toLowerCase':       {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'toUpperCase':       {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'trim':              {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'trimLeft':          {'kind': 'f', 'menu': '[String]', 'type': 'String'},
+  \     'trimRight':         {'kind': 'f', 'menu': '[String]', 'type': 'String'},
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[String]',
   \       'props': {
-  \         'charAt':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'charCodeAt':        {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number' },
-  \         'concat':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'indexOf':           {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number' },
-  \         'lastIndexOf':       {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number' },
-  \         'length':            {'kind': 'v', 'menu': '[String.prototype]', 'type': 'Number' },
-  \         'localeCompare':     {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number' },
-  \         'match':             {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Array' },
-  \         'replace':           {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'search':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number' },
-  \         'slice':             {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'split':             {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Array' },
-  \         'substr':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'substring':         {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'toLocaleLowerCase': {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'toLocaleUpperCase': {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'toLowerCase':       {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'toString':          {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'toUpperCase':       {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
-  \         'trim':              {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String' },
+  \         'charAt':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'charCodeAt':        {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number'},
+  \         'concat':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'indexOf':           {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number'},
+  \         'lastIndexOf':       {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number'},
+  \         'length':            {'kind': 'v', 'menu': '[String.prototype]', 'type': 'Number'},
+  \         'localeCompare':     {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number'},
+  \         'match':             {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Array'},
+  \         'replace':           {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'search':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number'},
+  \         'slice':             {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'split':             {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Array'},
+  \         'substr':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'substring':         {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'toLocaleLowerCase': {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'toLocaleUpperCase': {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'toLowerCase':       {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'toString':          {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'toUpperCase':       {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
+  \         'trim':              {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
   \       }
   \     }
   \   }
@@ -172,17 +172,17 @@ let s:GlobalObject.String = {
 let s:GlobalObject.Number = {
   \   'kind': 'f', 'type': 'Number', 'menu': '[Number]',
   \   'props': {
-  \     'NaN':               {'kind': 'v', 'type': 'Number' },
-  \     'POSITIVE_INFINITY': {'kind': 'v', 'type': 'Number' },
-  \     'NEGATIVE_INFINITY': {'kind': 'v', 'type': 'Number' },
-  \     'MAX_VALUE':         {'kind': 'v', 'type': 'NUmber' },
-  \     'MIN_VALUE':         {'kind': 'v', 'type': 'Number' },
+  \     'NaN':               {'kind': 'v', 'type': 'Number'},
+  \     'POSITIVE_INFINITY': {'kind': 'v', 'type': 'Number'},
+  \     'NEGATIVE_INFINITY': {'kind': 'v', 'type': 'Number'},
+  \     'MAX_VALUE':         {'kind': 'v', 'type': 'NUmber'},
+  \     'MIN_VALUE':         {'kind': 'v', 'type': 'Number'},
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Number]', 'class': 'Number',
   \       'props': {
-  \         'toExponential': {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String' },
-  \         'toFixed':       {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String' },
-  \         'toPrecision':   {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String' },
+  \         'toExponential': {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String'},
+  \         'toFixed':       {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String'},
+  \         'toPrecision':   {'kind': 'f', 'menu': '[Number.prototype]', 'type': 'String'},
   \       }
   \     }
   \   }
@@ -192,59 +192,59 @@ let s:GlobalObject.Number = {
 let s:GlobalObject.Date = {
   \   'kind': 'f', 'type': 'String', 'newType': 'Date', 'menu': '[Date]',
   \   'props': {
-  \     'now':   {'kind': 'f', 'menu': '[Date]', 'type': 'Number' },
-  \     'parse': {'kind': 'f', 'menu': '[Date]', 'type': 'Number' },
-  \     'UTC':   {'kind': 'f', 'menu': '[Date]', 'type': 'Number' },
+  \     'now':   {'kind': 'f', 'menu': '[Date]', 'type': 'Number'},
+  \     'parse': {'kind': 'f', 'menu': '[Date]', 'type': 'Number'},
+  \     'UTC':   {'kind': 'f', 'menu': '[Date]', 'type': 'Number'},
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Date]',
   \       'props': {
-  \         'getDate':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getDay':             {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getFullYear':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getHours':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getMilliseconds':    {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getMinutes':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getMonth':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getSeconds':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getTime':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getTimezoneOffset':  {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCDate':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCDay':          {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCFullYear':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCHours':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCMilliseconds': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCMinutes':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCMonth':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getUTCSeconds':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'getYear':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setDate':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setFullYear':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setHours':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setMilliseconds':    {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setMinutes':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setMonth':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setSeconds':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setTime':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setUTCDate':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setUTCFullYear':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setUTCHours':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setUTCMilliseconds': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setUTCMinutes':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setUTCMonth':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setUTCSeconds':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'setYear':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number' },
-  \         'toDateString':       {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toGMTString':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toISOString':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toJSON':             {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toLocaleDateString': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toLocaleFormat':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toLocaleString':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toLocaleTimeString': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toSource':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toString':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toTimeString':       {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
-  \         'toUTCString':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String' },
+  \         'getDate':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getDay':             {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getFullYear':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getHours':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getMilliseconds':    {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getMinutes':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getMonth':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getSeconds':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getTime':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getTimezoneOffset':  {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCDate':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCDay':          {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCFullYear':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCHours':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCMilliseconds': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCMinutes':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCMonth':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getUTCSeconds':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'getYear':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setDate':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setFullYear':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setHours':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setMilliseconds':    {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setMinutes':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setMonth':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setSeconds':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setTime':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setUTCDate':         {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setUTCFullYear':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setUTCHours':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setUTCMilliseconds': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setUTCMinutes':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setUTCMonth':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setUTCSeconds':      {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'setYear':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
+  \         'toDateString':       {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toGMTString':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toISOString':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toJSON':             {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toLocaleDateString': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toLocaleFormat':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toLocaleString':     {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toLocaleTimeString': {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toSource':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toString':           {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toTimeString':       {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
+  \         'toUTCString':        {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'String'},
   \       }
   \     }
   \   }
@@ -254,32 +254,32 @@ let s:GlobalObject.Date = {
 let s:GlobalObject.Math = {
   \   'kind': 'v', 'type': 'Object', 'menu': '[Math]',
   \   'props': {
-  \     'abs':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'acos':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'asin':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'atan':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'atan2':   {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'ceil':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'cos':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'exp':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'floor':   {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'log':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'max':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'min':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'pow':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'random':  {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'round':   {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'sin':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'sqrt':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'tan':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number' },
-  \     'E':       {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
-  \     'LOG2E':   {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
-  \     'LOG10E':  {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
-  \     'LN2':     {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
-  \     'LN10':    {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
-  \     'PI':      {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
-  \     'SQRT2':   {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
-  \     'SQRT1_2': {'kind': 'v', 'menu': '[Math]', 'type': 'Number' },
+  \     'abs':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'acos':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'asin':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'atan':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'atan2':   {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'ceil':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'cos':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'exp':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'floor':   {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'log':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'max':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'min':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'pow':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'random':  {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'round':   {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'sin':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'sqrt':    {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'tan':     {'kind': 'f', 'menu': '[Math]', 'type': 'Number'},
+  \     'E':       {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
+  \     'LOG2E':   {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
+  \     'LOG10E':  {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
+  \     'LN2':     {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
+  \     'LN10':    {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
+  \     'PI':      {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
+  \     'SQRT2':   {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
+  \     'SQRT1_2': {'kind': 'v', 'menu': '[Math]', 'type': 'Number'},
   \   }
   \ }
 " 2}}}
@@ -287,34 +287,34 @@ let s:GlobalObject.Math = {
 let s:GlobalObject.RegExp = {
   \   'kind': 'f', 'type': 'RegExp', 'menu': '[RegExp]',
   \   'props': {
-  \     '$_':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$1':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$2':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$3':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$4':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$5':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$6':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$7':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$8':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     '$9':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     'input':        {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     'lastMatch':    {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     'lastParen':    {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     'leftContext':  {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
-  \     'multiline':    {'kind': 'v', 'menu': '[RegExp]', 'type': 'Boolean' },
-  \     'rightContext': {'kind': 'v', 'menu': '[RegExp]', 'type': 'String' },
+  \     '$_':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$1':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$2':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$3':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$4':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$5':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$6':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$7':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$8':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     '$9':           {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     'input':        {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     'lastMatch':    {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     'lastParen':    {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     'leftContext':  {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
+  \     'multiline':    {'kind': 'v', 'menu': '[RegExp]', 'type': 'Boolean'},
+  \     'rightContext': {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[RegExp]',
   \       'props': {
-  \         'compile':    {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'RegExp' },
-  \         'exec':       {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'Array' },
-  \         'test':       {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'Boolean' },
-  \         'global':     {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean' },
-  \         'ignoreCase': {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean' },
-  \         'multiline':  {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean' },
-  \         'lastIndex':  {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Number' },
-  \         'source':     {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'String' },
-  \         'sticky':     {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean' },
+  \         'compile':    {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'RegExp'},
+  \         'exec':       {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'Array'},
+  \         'test':       {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'Boolean'},
+  \         'global':     {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean'},
+  \         'ignoreCase': {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean'},
+  \         'multiline':  {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean'},
+  \         'lastIndex':  {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Number'},
+  \         'source':     {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'String'},
+  \         'sticky':     {'kind': 'v', 'menu': '[RegExp.prototype]', 'type': 'Boolean'},
   \       }
   \     }
   \   }
@@ -335,10 +335,10 @@ let s:GlobalObject.Error = {
   \     'prototype': {
   \       'kind': 'v', 'type': 'Object', 'menu': '[Error]',
   \       'props': {
-  \         'fileName':   {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'String' },
-  \         'lineNumber': {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'Number' },
-  \         'message':    {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'String' },
-  \         'name':       {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'String' },
+  \         'fileName':   {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'String'},
+  \         'lineNumber': {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'Number'},
+  \         'message':    {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'String'},
+  \         'name':       {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'String'},
   \       }
   \     }
   \   }
@@ -349,7 +349,7 @@ let s:GlobalObject.EvalError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[EvalError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
   \     }
   \   }
   \ }
@@ -359,7 +359,7 @@ let s:GlobalObject.RangeError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[RangeError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
   \     }
   \   }
   \ }
@@ -369,7 +369,7 @@ let s:GlobalObject.ReferenceError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[ReferenceError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
   \     }
   \   }
   \ }
@@ -379,7 +379,7 @@ let s:GlobalObject.SyntaxError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[SyntaxError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
   \     }
   \   }
   \ }
@@ -389,7 +389,7 @@ let s:GlobalObject.TypeError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[TypeError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
   \     }
   \   }
   \ }
@@ -399,7 +399,7 @@ let s:GlobalObject.URIError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[URIError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'props': {}
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
   \     }
   \   }
   \ }
@@ -408,8 +408,8 @@ let s:GlobalObject.URIError = {
 let s:GlobalObject.JSON = {
   \   'kind': 'v', 'type': 'Object', 'menu': '[JSON]',
   \   'props': {
-  \     'stringify': {'kind': 'f', 'menu': '[JSON]', 'type': 'String' },
-  \     'parse':     {'kind': 'f', 'menu': '[JSON]', 'type': 'Object' },
+  \     'stringify': {'kind': 'f', 'menu': '[JSON]', 'type': 'String'},
+  \     'parse':     {'kind': 'f', 'menu': '[JSON]', 'type': 'Object'},
   \   }
   \ }
 " 2}}}
@@ -417,9 +417,9 @@ let s:GlobalObject.JSON = {
 let s:GlobalObject.arguments = {
   \   'kind': 'v', 'type': 'Object', 'menu': '[arguments]',
   \   'props': {
-  \     'length': {'kind': 'v', 'menu': '[arguments]', 'type': 'Number' },
-  \     'callee': {'kind': 'v', 'menu': '[arguments]', 'type': 'Function' },
-  \     'caller': {'kind': 'v', 'menu': '[arguments]', 'type': 'Function' },
+  \     'length': {'kind': 'v', 'menu': '[arguments]', 'type': 'Number'},
+  \     'callee': {'kind': 'v', 'menu': '[arguments]', 'type': 'Function'},
+  \     'caller': {'kind': 'v', 'menu': '[arguments]', 'type': 'Function'},
   \   }
   \ }
 " 2}}}
@@ -435,7 +435,7 @@ let s:GlobalObject.Infinity = {
 " 2}}}
 " undefined {{{2
 let s:GlobalObject.undefined = {
-  \   'kind': 'v', 'props': {}
+  \   'kind': 'v'
   \ }
 " 2}}}
 " eval {{{2

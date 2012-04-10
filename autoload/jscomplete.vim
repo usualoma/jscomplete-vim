@@ -463,6 +463,26 @@ let s:GlobalObject.isFinite = {
   \   'kind': 'f', 'type': 'Boolean', 'menu': 'built-in function'
   \ }
 " 2}}}
+" decodeURI {{{2
+let s:GlobalObject.decodeURI = {
+  \   'kind': 'f', 'type': 'String', 'menu': 'built-in function'
+  \ }
+" 2}}}
+" decodeURIComponent {{{2
+let s:GlobalObject.decodeURIComponent = {
+  \   'kind': 'f', 'type': 'String', 'menu': 'built-in function'
+  \ }
+" 2}}}
+" encodeURI {{{2
+let s:GlobalObject.encodeURI = {
+  \   'kind': 'f', 'type': 'String', 'menu': 'built-in function'
+  \ }
+" 2}}}
+" encodeURIComponent {{{2
+let s:GlobalObject.encodeURIComponent = {
+  \   'kind': 'f', 'type': 'String', 'menu': 'built-in function'
+  \ }
+" 2}}}
 " ECMAScript 6th {{{2
 let s:GlobalObject.WeakMap = {
   \   'kind': 'f', 'type': 'WeakMap', 'menu': '[WeakMap]',

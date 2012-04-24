@@ -584,7 +584,7 @@ function! jscomplete#CompleteJS(findstart, base)
       endwhile
     endif
     let b:compl_context = getline('.')[0:compl_begin]
-    call s:SetGlobalObject()
+      call jscomplete#SetGlobalObject()
     return start
   endif
 
@@ -637,8 +637,8 @@ function! jscomplete#CompleteJS(findstart, base)
 endfunction
 " 1}}}
 
-" void s:SetGlobalObject () {{{1
-function s:SetGlobalObject ()
+" Dict jscomplete#SetGlobalObject () {{{1
+function! jscomplete#SetGlobalObject ()
   if !exists('b:GlobalObject')
     let b:GlobalObject = deepcopy(s:GlobalObject)
     if exists('g:jscomplete_use')

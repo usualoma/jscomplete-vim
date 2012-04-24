@@ -566,25 +566,16 @@ let s:IdentifierReg = '[$a-zA-Z_][$a-zA-Z0-9_]*'
 function! jscomplete#CompleteJS(findstart, base)
   " 最初は a:findstart: 1, base: '' で来る
   " 補完対象テキストを見つけ出すために使われる
+  let currentLine = line('.')
   if a:findstart
     " locate the start of the word
     let line = getline('.')
-    let start = col('.') - 1
-    let curline = line('.')
     let compl_begin = col('.') - 2
-    " Bit risky but JS is rather limited language and local chars shouldn't
-    " fint way into names
-    if synIDattr(synID(curline, start, ''), 'name') =~ '^javaScriptString'
-      while start >= 0 && synIDattr(synID(curline, start, ''), 'name') =~ '^javaScriptString'
-        let start -= 1
-      endwhile
-    else
-      while start >= 0 && line[start - 1] =~ '[$a-zA-Z0-9_]'
-        let start -= 1
-      endwhile
-    endif
-    let b:compl_context = getline('.')[0:compl_begin]
+    let start = jscomplete#GetCompletePosition(line, currentLine)
+    let b:compl_context = line[0:compl_begin]
+    if !exists('b:GlobalObject')
       call jscomplete#SetGlobalObject()
+    endif
     return start
   endif
 
@@ -592,7 +583,6 @@ function! jscomplete#CompleteJS(findstart, base)
   let shortcontext = substitute(context, '\s*'.a:base.'$', '', '')
   unlet! b:compl_context
 
-  let currentLine = line('.')
   if empty(shortcontext)
     let currentLine = prevnonblank(line('.') - 1)
     let shortcontext = getline(currentLine)
@@ -634,6 +624,21 @@ function! jscomplete#CompleteJS(findstart, base)
   if exists('target') && !empty(target)
     return s:ConvertCompleteWords(s:GetProperties(target), a:base, prefix, postfix)
   endif
+endfunction
+" 1}}}
+" Number jscomplete#GetCompletePosition (String::text, Number::lineNum) {{{1
+function! jscomplete#GetCompletePosition (text, lineNum)
+  let l:pos = len(a:text)
+  if synIDattr(synID(a:lineNum, l:pos, ''), 'name') =~ '^javaScriptString'
+    while l:pos >= 0 && synIDattr(synID(a:lineNum, l:pos, ''), 'name') =~ '^javaScriptString'
+      let l:pos -= 1
+    endwhile
+  else
+    while l:pos >= 0 && a:text[l:pos - 1] =~ '[$a-zA-Z0-9_]'
+      let l:pos -= 1
+    endwhile
+  endif
+  return l:pos
 endfunction
 " 1}}}
 

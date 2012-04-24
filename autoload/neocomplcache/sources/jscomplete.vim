@@ -21,13 +21,13 @@ function s:source.get_keyword_pos (cur_text) "{{{
   endif
   return jscomplete#GetCompletePosition(a:cur_text, line('.'))
 endfunction "}}}
-function s:source.get_complete_words (cur_keyword_pos, cur_keyword_str) "{{{
+function s:source.get_complete_words (pos, complWord) "{{{
   let l:currentLine = line('.')
   let l:currentCol = col('.')
   let l:target = {}
 
   let l:currentText = getline('.')
-  let l:shortcontext = substitute(l:currentText[0: a:cur_keyword_pos -1], '\s*$', '', '')
+  let l:shortcontext = substitute(l:currentText[0: a:pos -1], '\s*$', '', '')
 
   let l:lineNum = l:currentLine
   if empty(l:shortcontext)
@@ -35,7 +35,7 @@ function s:source.get_complete_words (cur_keyword_pos, cur_keyword_str) "{{{
     let l:shortcontext = getline(l:lineNum)
   endif
 
-  let compList = jscomplete#GetCompleteWords(a:cur_keyword_str, l:shortcontext, l:lineNum)
+  let compList = jscomplete#GetCompleteWords(a:complWord, l:shortcontext, l:lineNum)
   call cursor(l:currentLine, l:currentCol)
   return compList
 endfunction "}}}

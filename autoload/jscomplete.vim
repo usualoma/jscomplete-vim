@@ -562,9 +562,9 @@ let s:ExpressionPriority = {
 
 let s:IdentifierReg = '[$a-zA-Z_][$a-zA-Z0-9_]*'
 
-" jscomplete#CompleteJS (Number::findstart, String::base) {{{1
-function! jscomplete#CompleteJS(findstart, base)
-  " 最初は a:findstart: 1, base: '' で来る
+" jscomplete#CompleteJS (Number::findstart, String::complWord) {{{1
+function! jscomplete#CompleteJS(findstart, complWord)
+  " 最初は a:findstart: 1, complWord: '' で来る
   " 補完対象テキストを見つけ出すために使われる
   let currentLine = line('.')
   if a:findstart
@@ -580,7 +580,7 @@ function! jscomplete#CompleteJS(findstart, base)
   endif
 
   let context = b:compl_context
-  let shortcontext = substitute(context, '\s*'.a:base.'$', '', '')
+  let shortcontext = substitute(context, '\s*'.a:complWord.'$', '', '')
   unlet! b:compl_context
 
   if empty(shortcontext)
@@ -593,12 +593,12 @@ function! jscomplete#CompleteJS(findstart, base)
     return []
   endif
 
-  return jscomplete#GetCompleteWords(a:base, shortcontext, currentLine)
+  return jscomplete#GetCompleteWords(a:complWord, shortcontext, currentLine)
 endfunction
 " 1}}}
 
-" List jscomplete#GetCompleteWords (String::base, String::shortcontext, Number::lineNum) {{{1
-function! jscomplete#GetCompleteWords (base, shortcontext, lineNum)
+" List jscomplete#GetCompleteWords (String::complWord, String::shortcontext, Number::lineNum) {{{1
+function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum)
   let target = {}
   let col = len(a:shortcontext)
   let prefix = ''
@@ -606,9 +606,9 @@ function! jscomplete#GetCompleteWords (base, shortcontext, lineNum)
   if a:shortcontext =~ '\.$'
     let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
   elseif a:shortcontext =~ '\[$'
-    if a:base =~ '^\s*["'']'
+    if a:complWord =~ '^\s*["'']'
       let quote = '"'
-      if a:base =~ '^\s*'''
+      if a:complWord =~ '^\s*'''
         let quote = ''''
       endif
       let prefix = quote
@@ -629,7 +629,7 @@ function! jscomplete#GetCompleteWords (base, shortcontext, lineNum)
     endif
   endif
   if !empty(target)
-    return s:ConvertCompleteWords(s:GetProperties(target), a:base, prefix, postfix)
+    return s:ConvertCompleteWords(s:GetProperties(target), a:complWord, prefix, postfix)
   endif
   return []
 endfunction

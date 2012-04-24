@@ -584,7 +584,7 @@ function! jscomplete#CompleteJS(findstart, base)
   unlet! b:compl_context
 
   if empty(shortcontext)
-    let currentLine = prevnonblank(line('.') - 1)
+    let currentLine = prevnonblank(currentLine - 1)
     let shortcontext = getline(currentLine)
   endif
 

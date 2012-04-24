@@ -593,12 +593,19 @@ function! jscomplete#CompleteJS(findstart, base)
     return []
   endif
 
-  let col = len(shortcontext)
+  return jscomplete#GetCompleteWords(a:base, shortcontext, currentLine)
+endfunction
+" 1}}}
+
+" List jscomplete#GetCompleteWords (String::base, String::shortcontext, Number::lineNum) {{{1
+function! jscomplete#GetCompleteWords (base, shortcontext, lineNum)
+  let target = {}
+  let col = len(a:shortcontext)
   let prefix = ''
   let postfix = ''
-  if shortcontext =~ '\.$'
-    let target = s:ParseCurrentExpression(shortcontext[: col -2], currentLine)
-  elseif shortcontext =~ '\[$'
+  if a:shortcontext =~ '\.$'
+    let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
+  elseif a:shortcontext =~ '\[$'
     if a:base =~ '^\s*["'']'
       let quote = '"'
       if a:base =~ '^\s*'''
@@ -606,12 +613,12 @@ function! jscomplete#CompleteJS(findstart, base)
       endif
       let prefix = quote
       let postfix = quote .']'
-      let target = s:ParseCurrentExpression(shortcontext[: col -2], currentLine)
+      let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
     else
       let target = {'props': b:GlobalObject}
     endif
   else
-    let tokens = s:FixTokens(s:GetCurrentLHSTokens(shortcontext, currentLine, [], 0))
+    let tokens = s:FixTokens(s:GetCurrentLHSTokens(a:shortcontext, a:lineNum, [], 0))
     if len(tokens) == 0
       let target = {'props': b:GlobalObject}
     else
@@ -621,9 +628,10 @@ function! jscomplete#CompleteJS(findstart, base)
       endif
     endif
   endif
-  if exists('target') && !empty(target)
+  if !empty(target)
     return s:ConvertCompleteWords(s:GetProperties(target), a:base, prefix, postfix)
   endif
+  return []
 endfunction
 " 1}}}
 " Number jscomplete#GetCompletePosition (String::text, Number::lineNum) {{{1

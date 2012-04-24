@@ -5,6 +5,9 @@ JavaScript complete script
 
 既存の javascriptcomplete.vim がアレだったので...。
 
+use as omnifunc
+---------------
+
 `omnifunc` に `jscomplete#CompleteJS` を設定すると動くよ。
 
     autocmd FileType javascript
@@ -12,6 +15,11 @@ JavaScript complete script
 
 - 主目的
   - `.` や `[` 後のプロパティを補完する
+
+use as neocomplcache plugin
+---------------------------
+
+特に設定は必要ないです。(下記「拡張」はお好みで)
 
 拡張
 ----

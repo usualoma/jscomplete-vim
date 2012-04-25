@@ -1257,7 +1257,7 @@ function s:ParseTokens(start, end, pri)
         endif
         call cursor(currentLine, currentCol + 1)
         let endPos = searchpairpos(s, '', e, 'Wn')
-        let pos = { 'start': [currentLine, currentCol], 'end': endPos }
+        let pos = { 'start': [currentLine, currentCol + 1], 'end': endPos }
         if isFunction == 2 " function ()
           let token.funcArgs = pos
         elseif isFunction == 3 " function () {}

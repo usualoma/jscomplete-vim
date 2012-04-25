@@ -926,6 +926,7 @@ endfunction
 " Dict s:EvalExpression (List::tokens) {{{1
 function s:EvalExpression (tokens)
   let result = {}
+  let parentResult = {}
   let isNewExpression = 0
 
   for token in a:tokens
@@ -957,19 +958,21 @@ function s:EvalExpression (tokens)
         let result = s:ParseExpression(token.pos, 0)
       endif
     else
+      let parentResult = result
       let result = s:GetPropertyType(result, token)
     endif
 
     if has_key(token, 'callArgs')
       for arguments in token.callArgs
-        let result = s:EvalCall(result, isNewExpression)
+        let result = s:EvalCall(result, isNewExpression, arguments, parentResult)
+        let parentResult = result
         let isNewExpression -= 1
       endfor
     endif
   endfor
 
   if isNewExpression > 0
-    let result = s:EvalCall(result, 1)
+    let result = s:EvalCall(result, 1, {}, {})
   endif
 
   return result
@@ -977,30 +980,57 @@ endfunction
 " 1}}}
 
 " Dict s:EvalCall (Dict::target, Number::isNewExpression) {{{1
-function s:EvalCall (target, isNewExpression)
+function s:EvalCall (target, isNewExpression, arguments, parent)
   if get(a:target, 'kind', '') == 'f'
+    let t = 'type'
     if a:isNewExpression > 0
-      if has_key(a:target, 'newType') && has_key(b:GlobalObject, a:target.newType)
-        let constructor = b:GlobalObject[a:target.newType]
-      elseif has_key(a:target, 'type') && has_key(b:GlobalObject, a:target.type)
-        let constructor = b:GlobalObject[a:target.type]
+      if has_key(a:target, 'newType')
+        let t = 'newType'
+      endif
+
+      if type(a:target[t]) == 1 && has_key(b:GlobalObject, a:target[t])
+        let constructor = b:GlobalObject[a:target[t]]
+      elseif type(a:target[t]) == 2 "Function
+        let res = a:target[t](s:ParseArguments(a:arguments), a:parent)
+        if type(res) == 1 && has_key(b:GlobalObject, res)
+          let constructor = b:GlobalObject[res]
+        elseif type(res) == 4
+          let constructor = res
+        endif
       else
         let constructor = b:GlobalObject.Object
       endif
+
       if has_key(constructor, 'props')
         return get(constructor.props, 'prototype', {})
       endif
-    elseif has_key(a:target, 'type')
-      if has_key(b:GlobalObject, a:target.type) && has_key(b:GlobalObject[a:target.type], 'props')
-        return get(b:GlobalObject[a:target.type].props, 'prototype', {})
-      else " type='' の場合は、undefined
-        return b:GlobalObject.undefined
+    elseif has_key(a:target, t)
+      if type(a:target[t]) == 1 && has_key(b:GlobalObject, a:target[t])
+        return get(get(b:GlobalObject[a:target[t]], 'props', {}), 'protptype', {})
+      elseif type(a:target[t]) == 2 "Function
+        let res = a:target[t](s:ParseArguments(a:arguments), a:parent)
+        if type(res) == 1 && has_key(b:GlobalObject, res)
+          return get(get(b:GlobalObject[res], 'props', {}), 'prototype', {})
+        elseif type(res) == 4 "Dict
+          return res
+        endif
       endif
     else " XXX: 'type'がないので不定、とりあえずObject.prototypeを返す
       return b:GlobalObject.Object.props.prototype
     endif
   endif
   return {}
+endfunction
+" 1}}}
+
+" List s:ParseArguments (Dict::arguments) {{{1
+function s:ParseArguments (arguments)
+  if has_key(a:arguments, 'start') && has_key(a:arguments, 'end')
+    let tokens = s:ParseTokens(a:arguments.start, a:arguments.end, 0)
+    let [i, results] = s:ParseExpression2(tokens, 0)
+    return results
+  endif
+  return []
 endfunction
 " 1}}}
 

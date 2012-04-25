@@ -1311,8 +1311,8 @@ function s:ParseTokens(start, end, pri)
         let line = line[buf_len :]
         let string = eval('"'. m[1: m-2] .'"')
         call add(tokens, {'type': 'literal', 'name': 'String', 'value': string, 'pri': s:ExpressionPriority.Primary})
-      elseif line =~ '^/.\{1,\}/[gmyi]*/' " RegExp Literal
-        let m = matchstr(line, '^/.\{1,\}/[gmyi]*/')
+      elseif line =~ '^/.\{1,\}/[gmyi]*' " RegExp Literal
+        let m = matchstr(line, '^/.\{1,\}/[gmyi]*')
         call add(tokens, {'type': 'literal', 'name': 'RegExp', 'value': m, 'pri': s:ExpressionPriority.Primary})
         let line = line[len(m):]
       elseif line[0:1] =~ '++\|--' " Postfix or Unary Operators

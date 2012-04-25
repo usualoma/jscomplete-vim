@@ -753,8 +753,17 @@ function s:GetPropertyType (parent, token)
       let prop = properties[name]
       if prop.kind == 'f'
         call extend(result, prop)
-      elseif has_key(prop, 'type') && has_key(b:GlobalObject, prop.type)
-        call extend(result, deepcopy(b:GlobalObject[prop.type].props.prototype))
+      elseif has_key(prop, 'type')
+        if type(prop.type) == 2 "Function
+          let res = prop.type(parent)
+          if type(res) == 1 && has_key(b:GlobalObject, res)
+            call extend(result, deepcopy(b:GlobalObject[t].props.prototype))
+          elseif type(res) == 4 "Dict
+            call extend(result, t)
+          endif
+        elseif type(prop.type) == 1 && has_key(b:GlobalObject, prop.type)
+          call extend(result, deepcopy(b:GlobalObject[t].props.prototype))
+        endif
       endif
       let result.props = extend(get(result, 'props', {}), get(prop, 'props', {}))
     endif

@@ -9,7 +9,7 @@ set cpo&vim
 let s:GlobalObject = {}
 " Object {{{2
 let s:GlobalObject.Object = {
-  \   'kind': 'f', 'type': 'Object', 'menu': '[Object]',
+  \   'kind': 'f', 'menu': '[Object]',
   \   'props': {
   \     'create':                   {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
   \     'defineProperties':         {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
@@ -527,6 +527,10 @@ let s:GlobalObject.Map = {
   \ }
 " 2}}}
 " 1}}}
+function s:GlobalObject.Object.type (arguments, parent)
+  let arg = get(a:arguments, 0, {})
+  return get(arg, 'class', 'Object')
+endfunction
 " s:Keywords {{{1
 let s:Keywords = [
   \ 'break', 'do', 'instanceof', 'typeof', 'case', 'else', 'new', 'var', 'catch',

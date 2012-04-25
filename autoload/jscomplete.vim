@@ -25,7 +25,7 @@ let s:GlobalObject.Object = {
   \     'preventExtensions':        {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
   \     'seal':                     {'kind': 'f', 'menu': '[Object]', 'type': 'Object'},
   \     'prototype': {
-  \       'kind': 'v', 'menu': '[Object]',
+  \       'kind': 'v', 'menu': '[Object]', 'class': 'Object',
   \       'props': {
   \         'constructor':          {'kind': 'v', 'menu': 'ObjectConstructor',  'type': 'Function'},
   \         'hasOwnProperty':       {'kind': 'f', 'menu': '[Object.prototype]', 'type': 'Boolean'},
@@ -46,7 +46,7 @@ let s:GlobalObject.Function = {
   \   'kind': 'f', 'type': 'Function', 'menu': '[Function]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Function]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Function]', 'class': 'Function',
   \       'props': {
   \         'apply':       {'kind': 'f', 'menu': '[Function.prototype]'},
   \         'arguments':   {'kind': 'v', 'menu': '[Function.prototype]', 'type': 'arguments'},
@@ -87,7 +87,7 @@ let s:GlobalObject.Array = {
   \     'splice':      {'kind': 'f', 'menu': '[Array]', 'type': 'Array'},
   \     'unshift':     {'kind': 'f', 'menu': '[Array]', 'type': 'Number'},
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Array]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Array]', 'class': 'Array',
   \       'props': {
   \         'concat':      {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Array'},
   \         'every':       {'kind': 'f', 'menu': '[Array.prototype]', 'type': 'Boolean'},
@@ -141,7 +141,7 @@ let s:GlobalObject.String = {
   \     'trimLeft':          {'kind': 'f', 'menu': '[String]', 'type': 'String'},
   \     'trimRight':         {'kind': 'f', 'menu': '[String]', 'type': 'String'},
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[String]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[String]', 'class': 'String',
   \       'props': {
   \         'charAt':            {'kind': 'f', 'menu': '[String.prototype]', 'type': 'String'},
   \         'charCodeAt':        {'kind': 'f', 'menu': '[String.prototype]', 'type': 'Number'},
@@ -196,7 +196,7 @@ let s:GlobalObject.Date = {
   \     'parse': {'kind': 'f', 'menu': '[Date]', 'type': 'Number'},
   \     'UTC':   {'kind': 'f', 'menu': '[Date]', 'type': 'Number'},
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Date]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Date]', 'class': 'Date',
   \       'props': {
   \         'getDate':            {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
   \         'getDay':             {'kind': 'f', 'menu': '[Date.prototype]', 'type': 'Number'},
@@ -304,7 +304,7 @@ let s:GlobalObject.RegExp = {
   \     'multiline':    {'kind': 'v', 'menu': '[RegExp]', 'type': 'Boolean'},
   \     'rightContext': {'kind': 'v', 'menu': '[RegExp]', 'type': 'String'},
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[RegExp]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[RegExp]', 'class': 'RegExp',
   \       'props': {
   \         'compile':    {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'RegExp'},
   \         'exec':       {'kind': 'f', 'menu': '[RegExp.prototype]', 'type': 'Array'},
@@ -333,7 +333,7 @@ let s:GlobalObject.Error = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[Error]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'class': 'Error',
   \       'props': {
   \         'fileName':   {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'String'},
   \         'lineNumber': {'kind': 'v', 'menu': '[Error.prototype]', 'type': 'Number'},
@@ -349,7 +349,7 @@ let s:GlobalObject.EvalError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[EvalError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'class': 'EvalError',
   \     }
   \   }
   \ }
@@ -359,7 +359,7 @@ let s:GlobalObject.RangeError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[RangeError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'class': 'RangeError',
   \     }
   \   }
   \ }
@@ -369,7 +369,7 @@ let s:GlobalObject.ReferenceError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[ReferenceError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'class': 'ReferenceError',
   \     }
   \   }
   \ }
@@ -379,7 +379,7 @@ let s:GlobalObject.SyntaxError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[SyntaxError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'class': 'SyntaxError',
   \     }
   \   }
   \ }
@@ -389,7 +389,7 @@ let s:GlobalObject.TypeError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[TypeError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'class': 'TypeError',
   \     }
   \   }
   \ }
@@ -399,7 +399,7 @@ let s:GlobalObject.URIError = {
   \   'kind': 'f', 'type': 'Error', 'menu': '[URIError]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]'
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Error]', 'class': 'URIError',
   \     }
   \   }
   \ }
@@ -488,7 +488,7 @@ let s:GlobalObject.WeakMap = {
   \   'kind': 'f', 'type': 'WeakMap', 'menu': '[WeakMap]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[WeakMap]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[WeakMap]', 'class': 'WeakMap',
   \       'props': {
   \         'delete': {'kind': 'f', 'menu': '[WeakMap]', 'type': 'Boolean'},
   \         'get':    {'kind': 'f', 'menu': '[WeakMap]'},
@@ -502,7 +502,7 @@ let s:GlobalObject.Set = {
   \   'kind': 'f', 'type': 'Set', 'menu': '[Set]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Set]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Set]', 'class': 'Set',
   \       'props': {
   \         'add':    {'kind': 'f', 'menu': '[Set]', 'type': ''},
   \         'delete': {'kind': 'f', 'menu': '[Set]', 'type': 'Boolean'},
@@ -515,7 +515,7 @@ let s:GlobalObject.Map = {
   \   'kind': 'f', 'type': 'Map', 'menu': '[Map]',
   \   'props': {
   \     'prototype': {
-  \       'kind': 'v', 'type': 'Object', 'menu': '[Map]',
+  \       'kind': 'v', 'type': 'Object', 'menu': '[Map]', 'class': 'Map',
   \       'props': {
   \         'get':    {'kind': 'f', 'menu': '[Map]'},
   \         'delete': {'kind': 'f', 'menu': '[Map]', 'type': 'Boolean'},

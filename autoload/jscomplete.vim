@@ -1327,7 +1327,7 @@ function s:ParseTokens(start, end, pri)
           call add(tokens, {'type': type, 'pri': s:ExpressionPriority.Primary, 'pos': pos})
         endif
         if currentLine == endPos[0]
-          let line = line[endPos[1] - currentCol :]
+          let line = line[endPos[1] + 1 - currentCol :]
         else
           let line = ''
           let length = 0

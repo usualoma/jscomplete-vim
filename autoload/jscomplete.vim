@@ -1197,7 +1197,7 @@ function s:ParseTokens(start, end, pri)
         return tokens
       elseif line[0] == ',' " CommaOperator
         if a:pri < s:ExpressionPriority.Comma
-          call add(tokens, { 'type': 'op', 'name': ',' })
+          call add(tokens, { 'type': 'op', 'name': ',', 'pri': s:ExpressionPriority.Comma})
         else
           return tokens
         endif

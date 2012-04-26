@@ -1319,6 +1319,7 @@ function s:ParseTokens(start, end, pri)
           let line = line[endPos[1] - currentCol :]
         else
           let line = ''
+          let length = 0
           let jumpCol = 1
           let currentLine = endPos[0] - 1
           let currentCol = endPos[1]

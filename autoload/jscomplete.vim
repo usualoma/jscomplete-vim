@@ -948,8 +948,7 @@ function s:EvalExpression (tokens)
       if type == 'keyword' && token.name == 'new'
         let isNewExpression += 1
       elseif type == 'ArrayLiteral'
-        " TODO: parse ArrayLiteral
-        let result = b:GlobalObject.Array.props.prototype
+        let result = s:ParseArray(token.pos)
       elseif type == 'ObjectLiteral'
         " TODO: parse ObjectLiteral
         let result = b:GlobalObject.Object.props.prototype
@@ -1044,6 +1043,18 @@ function s:ParseArguments (arguments)
     return results
   endif
   return []
+endfunction
+" 1}}}
+
+" Dict s:ParseArray (Dict:position) {{{1
+function s:ParseArray (position)
+  let list = s:ParseArguments(a:position)
+  let props = {}
+  for i in range(len(list))
+    let props[i] = list[i]
+  endfor
+  call extend(props, b:GlobalObject.Array.props.prototype.props)
+  return {'kind': 'v', 'type': 'Object', 'class': 'Array', 'props': props}
 endfunction
 " 1}}}
 

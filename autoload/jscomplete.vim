@@ -762,7 +762,7 @@ function s:GetPropertyType (parent, token)
             call extend(result, t)
           endif
         elseif type(prop.type) == 1 && has_key(b:GlobalObject, prop.type)
-          call extend(result, deepcopy(b:GlobalObject[t].props.prototype))
+          call extend(result, deepcopy(b:GlobalObject[prop.type].props.prototype))
         endif
       endif
       let result.props = extend(get(result, 'props', {}), get(prop, 'props', {}))

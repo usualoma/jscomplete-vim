@@ -1018,7 +1018,7 @@ function s:EvalCall (target, isNewExpression, arguments, parent)
       endif
     elseif has_key(a:target, t)
       if type(a:target[t]) == 1 && has_key(b:GlobalObject, a:target[t])
-        return get(get(b:GlobalObject[a:target[t]], 'props', {}), 'protptype', {})
+        return get(get(b:GlobalObject[a:target[t]], 'props', {}), 'prototype', {})
       elseif type(a:target[t]) == 2 "Function
         let res = a:target[t](s:ParseArguments(a:arguments), a:parent)
         if type(res) == 1 && has_key(b:GlobalObject, res)

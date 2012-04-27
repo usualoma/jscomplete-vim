@@ -618,10 +618,10 @@ function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum)
       let prefix = quote
       let postfix = quote .']'
       let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
-    else
+    elseif s:IsCompleteGlobalObject()
       let target = {'props': b:GlobalObject}
     endif
-  else
+  elseif s:IsCompleteGlobalObject()
     let tokens = s:FixTokens(s:GetCurrentLHSTokens(a:shortcontext, a:lineNum, [], 0))
     if len(tokens) == 0
       let target = {'props': b:GlobalObject}
@@ -677,6 +677,15 @@ function s:LoadScripts (names)
   endif
 endfunction
 " 1}}}
+
+function s:IsCompleteGlobalObject ()
+  if exists('b:jscomplete_complete_global')
+    return b:jscomplete_complete_global
+  elseif exists('g:jscomplete_complete_global')
+    return g:jscomplete_complete_global
+  endif
+  return 0
+endfunction
 
 " Dict s:ParseCurrentExpression (String::shortcontext, Number::currentLine) {{{1
 function s:ParseCurrentExpression (shortcontext, currentLine)

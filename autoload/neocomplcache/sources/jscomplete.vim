@@ -22,6 +22,15 @@ function s:source.get_keyword_pos (cur_text) "{{{
   return jscomplete#GetCompletePosition(a:cur_text, line('.'))
 endfunction "}}}
 function s:source.get_complete_words (pos, complWord) "{{{
+  let completionLength = neocomplcache#get_completion_length('jscomplete')
+  if completionLength == 0 && exists('g:neocomplcache_auto_completion_start_length')
+    let completionLength = g:neocomplcache_auto_completion_start_length
+  endif
+
+  if len(a:complWord) < completionLength
+    return []
+  endif
+
   let l:currentLine = line('.')
   let l:currentCol = col('.')
   let l:target = {}

@@ -765,7 +765,6 @@ function s:GetPropertyType (parent, token)
           call extend(result, deepcopy(b:GlobalObject[prop.type].props.prototype))
         endif
       endif
-      let result.props = extend(get(result, 'props', {}), get(prop, 'props', {}))
     endif
   endif
 

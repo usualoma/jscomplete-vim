@@ -755,11 +755,11 @@ function s:GetPropertyType (parent, token)
         call extend(result, prop)
       elseif has_key(prop, 'type')
         if type(prop.type) == 2 "Function
-          let res = prop.type(parent)
+          let res = prop.type(a:parent)
           if type(res) == 1 && has_key(b:GlobalObject, res)
-            call extend(result, deepcopy(b:GlobalObject[t].props.prototype))
+            call extend(result, deepcopy(b:GlobalObject[res].props.prototype))
           elseif type(res) == 4 "Dict
-            call extend(result, t)
+            call extend(result, res)
           endif
         elseif type(prop.type) == 1 && has_key(b:GlobalObject, prop.type)
           call extend(result, deepcopy(b:GlobalObject[prop.type].props.prototype))

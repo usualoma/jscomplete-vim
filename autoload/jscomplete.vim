@@ -780,14 +780,23 @@ function s:GetProperties (target)
   call extend(props, get(a:target, 'props', {}))
 
   if has_key(a:target, 'kind')
-    let object = ''
+    let object = {}
     if a:target.kind == 'f'
-      let object = 'Function'
+      let object = b:GlobalObject.Function
     elseif has_key(a:target, 'type')
-      let object = a:target.type
+      if type(a:target.type) == 2 "Function
+        let res = a:target.type({})
+        if type(res) == 1 has_key(b:GlobalObject, res)
+          let object = b:GlobalObject[res]
+        elseif type(res) == 4 "Dict
+          let object = res
+        endif
+      elseif type(a:target.type) == 1 && has_key(b:GlobalObject, a:target.type)
+        let object = b:GlobalObject[a:target.type]
+      endif
     endif
-    if !empty(object) && has_key(b:GlobalObject[object], 'props') && has_key(b:GlobalObject[object].props, 'prototype')
-      call extend(proto, s:GetProperties(b:GlobalObject[object].props.prototype))
+    if has_key(object, 'props') && has_key(object.props, 'prototype')
+      call extend(proto, s:GetProperties(object.props.prototype))
     endif
   endif
   return extend(proto, props)

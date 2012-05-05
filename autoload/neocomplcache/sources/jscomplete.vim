@@ -27,13 +27,8 @@ function s:source.get_complete_words (pos, complWord) "{{{
     let completionLength = g:neocomplcache_auto_completion_start_length
   endif
 
-  if len(a:complWord) < completionLength
-    return []
-  endif
-
   let l:currentLine = line('.')
   let l:currentCol = col('.')
-  let l:target = {}
 
   let l:currentText = getline('.')
   let l:shortcontext = substitute(l:currentText[0: a:pos -1], '\s*$', '', '')
@@ -44,7 +39,7 @@ function s:source.get_complete_words (pos, complWord) "{{{
     let l:shortcontext = getline(l:lineNum)
   endif
 
-  let compList = jscomplete#GetCompleteWords(a:complWord, l:shortcontext, l:lineNum)
+  let compList = jscomplete#GetCompleteWords(a:complWord, l:shortcontext, l:lineNum, completionLength)
   call cursor(l:currentLine, l:currentCol)
   return compList
 endfunction "}}}

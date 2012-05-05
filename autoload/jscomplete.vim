@@ -598,12 +598,12 @@ function! jscomplete#CompleteJS(findstart, complWord)
     return []
   endif
 
-  return jscomplete#GetCompleteWords(a:complWord, shortcontext, currentLine)
+  return jscomplete#GetCompleteWords(a:complWord, shortcontext, currentLine, 0)
 endfunction
 " 1}}}
 
-" List jscomplete#GetCompleteWords (String::complWord, String::shortcontext, Number::lineNum) {{{1
-function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum)
+" List jscomplete#GetCompleteWords (String::complWord, String::shortcontext, Number::lineNum, Number::completionLength) {{{1
+function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum, completionLength)
   let target = {}
   let col = len(a:shortcontext)
   let quote = ''
@@ -618,6 +618,9 @@ function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum)
       let quote = ''''
     endif
   else
+    if len(a:complWord) < a:completionLength
+      return []
+    endif
     let tokens = s:FixTokens(s:GetCurrentLHSTokens(a:shortcontext, a:lineNum, [], 0))
     if len(tokens) == 0
       let target = {'props': b:GlobalObject}

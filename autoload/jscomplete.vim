@@ -606,21 +606,16 @@ endfunction
 function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum)
   let target = {}
   let col = len(a:shortcontext)
-  let prefix = ''
+  let quote = ''
   let postfix = ''
   if a:shortcontext =~ '\.$'
     let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
   elseif a:shortcontext =~ '\[$'
-    if a:complWord =~ '^\s*["'']'
-      let quote = '"'
-      if a:complWord =~ '^\s*'''
-        let quote = ''''
-      endif
-      let prefix = quote
-      let postfix = quote .']'
-      let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
-    else
-      let target = {'props': b:GlobalObject}
+    let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
+    let quote = '"'
+    let postfix = ']'
+    if a:complWord =~ '^\s*'''
+      let quote = ''''
     endif
   else
     let tokens = s:FixTokens(s:GetCurrentLHSTokens(a:shortcontext, a:lineNum, [], 0))
@@ -634,7 +629,7 @@ function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum)
     endif
   endif
   if !empty(target)
-    return s:ConvertCompleteWords(s:GetProperties(target), a:complWord, prefix, postfix)
+    return s:ConvertCompleteWords(s:GetProperties(target), a:complWord, quote, postfix)
   endif
   return []
 endfunction
@@ -1519,15 +1514,16 @@ function s:ParseTokens(start, end, pri)
 endfunction
 " 1}}}
 
-" s:ConvertCompleteWords (Dict::props, String::filter, String::prefix, String::postfix) {{{1
-function s:ConvertCompleteWords (props, filter, prefix, postfix)
+" s:ConvertCompleteWords (Dict::props, String::filter, String::quote, String:postfix) {{{1
+function s:ConvertCompleteWords (props, filter, quote, postfix)
   let comp_list = []
   for key in sort(keys(a:props))
-    if empty(a:prefix) && key !~ '^'.s:IdentifierReg.'$'
+    if empty(a:quote) && key !~ '^'.s:IdentifierReg.'$'
       continue
     endif
     let prop = a:props[key]
-    let word = a:prefix . key . a:postfix
+    let word = key =~ '^\d\+$' ? key : a:quote . key . a:quote
+    let word .= a:postfix
     if word =~ '^'.a:filter
       let kind = prop.kind
       let menu = get(prop, 'menu', '')

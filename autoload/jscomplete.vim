@@ -549,18 +549,19 @@ let s:StatementKeywords = [
 let s:ExpressionPriority = {
   \ 'Comma': 1,
   \ 'Assignment': 2,
-  \ 'Conditional': 3,
-  \ 'BinaryLoginal': 4,
-  \ 'BinaryBitwise': 5,
-  \ 'Equality': 6,
-  \ 'Relational': 7,
-  \ 'BitwiseShift': 8,
-  \ 'Additive': 9,
-  \ 'Multiplicative': 10,
-  \ 'Unary': 11,
-  \ 'Postfix': 12,
-  \ 'LeftHandSide': 13,
-  \ 'Primary': 14,
+  \ 'PropertyAssginment': 3,
+  \ 'Conditional': 4,
+  \ 'BinaryLoginal': 5,
+  \ 'BinaryBitwise': 6,
+  \ 'Equality': 7,
+  \ 'Relational': 8,
+  \ 'BitwiseShift': 9,
+  \ 'Additive': 10,
+  \ 'Multiplicative': 11,
+  \ 'Unary': 12,
+  \ 'Postfix': 13,
+  \ 'LeftHandSide': 14,
+  \ 'Primary': 15,
   \ }
 " 1}}}
 
@@ -959,8 +960,7 @@ function s:EvalExpression (tokens)
       elseif type == 'ArrayLiteral'
         let result = s:ParseArray(token.pos)
       elseif type == 'ObjectLiteral'
-        " TODO: parse ObjectLiteral
-        let result = b:GlobalObject.Object.props.prototype
+        let result = s:ParseObject(token.pos)
       elseif type == 'FunctionLiteral'
         let result = {'kind': 'f'}
         if has_key(token, 'name')
@@ -1062,8 +1062,57 @@ function s:ParseArray (position)
   for i in range(len(list))
     let props[i] = list[i]
   endfor
-  call extend(props, b:GlobalObject.Array.props.prototype.props)
-  return {'kind': 'v', 'type': 'Object', 'class': 'Array', 'props': props}
+  return {'kind': 'v', 'type': 'Array', 'class': 'Array', 'props': props}
+endfunction
+" 1}}}
+
+" Dict s:ParseObject (Dict::position) {{{1
+function s:ParseObject (position)
+  if has_key(a:position, 'start') && has_key(a:position, 'end')
+    let tokens = s:ParseTokens(a:position.start, a:position.end, 0)
+    let props = {}
+    let bufTokens = []
+    let isPropertyName = 1
+    let currentPropertyName = ''
+    for token in tokens
+      if token.pri == s:ExpressionPriority.Comma
+        if !empty(currentPropertyName)
+          let [i, results] = s:ParseExpression2(bufTokens, s:ExpressionPriority.Comma)
+          let props[currentPropertyName] = get(results, 0, {})
+        endif
+        let currentPropertyName = ''
+        let bufTokens = []
+        let isPropertyName = 1
+        continue
+      elseif token.pri == s:ExpressionPriority.PropertyAssginment
+        let isPropertyName = 0
+        continue
+      endif
+      if isPropertyName
+        if !empty(currentPropertyName)
+          return {} " syntax error
+        endif
+        if token.type == 'Identifier'
+          let currentPropertyName = token.name
+        elseif token.type == 'literal'
+          let currentPropertyName = token.value
+        elseif token.type == 'Getter' || token.type == 'Setter'
+          if has_key(props, token.name)
+            let props[token.name].menu = '[Getter/Setter]'
+          else
+            let props[token.name] = {'kind': 'v', 'type': '', 'menu': '['. token.type .']'}
+          endif
+        endif
+      else
+        call add(bufTokens, token)
+      endif
+    endfor
+    if len(bufTokens) > 0 && !empty(currentPropertyName)
+      let [i, results] = s:ParseExpression2(bufTokens, s:ExpressionPriority.Comma)
+      let props[currentPropertyName] = get(results, 0, {})
+    endif
+    return {'kind': 'v', 'type': 'Object', 'props': props}
+  endif
 endfunction
 " 1}}}
 
@@ -1183,6 +1232,7 @@ function s:ParseTokens(start, end, pri)
   let isFunction = 0
   let jumpCol = 0
   let isNewLine = 1
+  let isContitionalNest = 0
   let [startLine, startCol] = a:start
   if len(a:end) == 2
     let [endLine, endCol] = a:end
@@ -1191,16 +1241,14 @@ function s:ParseTokens(start, end, pri)
     let endCol = len(getline(endLine))
   endif
   let currentLine = startLine
-  let currentCol = startCol
+  let currentCol = startCol + 1
   while currentLine <= endLine
     let line = getline(currentLine)
     if currentLine == endLine
       let line = endCol < 2 ? '' : line[: endCol -2]
     endif
-    if currentLine == startLine
-      let line = line[startCol :]
-    elseif jumpCol
-      let line = line[currentCol :]
+    let line = line[currentCol - 1 :]
+    if jumpCol
       let jumpCol = 0
     endif
     let line = substitute(line, '//.*$', '', '')
@@ -1272,8 +1320,18 @@ function s:ParseTokens(start, end, pri)
           endif
         elseif token.type == '' || token.type == 'keyword'
           call add(tokens, {'type': 'Identifier', 'name': m, 'pri': s:ExpressionPriority.Primary})
-        elseif isNewLine && token.type == 'Identifier'
-          return tokens
+        elseif token.type == 'Identifier'
+          if token.name == 'get'
+            let token.type = 'Getter'
+            let token.name = m
+          elseif token.name == 'set'
+            let token.type = 'Setter'
+            let token.name = m
+          elseif isNewLine
+            return tokens
+          else
+            return [] " SyntaxError
+          endif
         else
           return [] " SyntaxError
         endif
@@ -1301,7 +1359,11 @@ function s:ParseTokens(start, end, pri)
             if isFunction == 1
               let isFunction = 2
             elseif token.type != 'keyword' && token.pri >= s:ExpressionPriority.LeftHandSide
-              let isFunction = 4
+              if token.type == 'Getter' || token.type == 'Setter'
+                let isFunction = 2
+              else
+                let isFunction = 4
+              endif
             endif
           endif
         else
@@ -1318,9 +1380,9 @@ function s:ParseTokens(start, end, pri)
             endif
           endif
         endif
-        call cursor(currentLine, currentCol + 1)
+        call cursor(currentLine, currentCol)
         let endPos = searchpairpos(s, '', e, 'Wn')
-        let pos = { 'start': [currentLine, currentCol + 1], 'end': endPos }
+        let pos = { 'start': [currentLine, currentCol], 'end': endPos }
         if isFunction == 2 " function ()
           let token.funcArgs = pos
         elseif isFunction == 3 " function () {}
@@ -1342,7 +1404,7 @@ function s:ParseTokens(start, end, pri)
           let length = 0
           let jumpCol = 1
           let currentLine = endPos[0] - 1
-          let currentCol = endPos[1]
+          let currentCol = endPos[1] + 1
         endif
       elseif line[0:1] == '/*' " コメントは無視
         call cursor(currentLine, currentCol + 1)
@@ -1353,7 +1415,7 @@ function s:ParseTokens(start, end, pri)
           let line = ''
           let jumpCol = 1
           let currentLine = endPos[0] - 1
-          let currentCol = endPos[1] + 1
+          let currentCol = endPos[1] + 2
         endif
       elseif line[0] == '.'
         if !empty(token.type)
@@ -1418,8 +1480,17 @@ function s:ParseTokens(start, end, pri)
       elseif line[0] =~ '[&^|]' " Binary Bitwise Operators
         call add(tokens, {'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.BinaryBitwise})
         let line = line[1:]
-      elseif line[0] =~ '[?:]' " Conditional Operators
-        call add(tokens, {'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.Conditional})
+      elseif line[0] == '?' " Conditional Operators
+        call add(tokens, {'type': 'op', 'name': '?', 'pri': s:ExpressionPriority.Conditional})
+        let isContitionalNest += 1
+        let line = line[1:]
+      elseif line[0] == ':'
+        if isContitionalNest > 0 " Conditional Operators
+          call add(tokens, {'type': 'op', 'name': ':', 'pri': s:ExpressionPriority.Conditional})
+          let isContitionalNest -= 1
+        else " Object Literal
+          call add(tokens, {'type': 'op', 'name': ':', 'pri': s:ExpressionPriority.PropertyAssginment})
+        endif
         let line = line[1:]
       elseif line[0] == '=' " Assignment Operators
         call add(tokens, { 'type': 'op', 'name': line[0], 'pri': s:ExpressionPriority.Assignment })

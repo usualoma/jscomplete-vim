@@ -31,7 +31,7 @@ function s:source.get_complete_words (pos, complWord) "{{{
   let l:currentCol = col('.')
 
   let l:currentText = getline('.')
-  let l:shortcontext = substitute(l:currentText[0: a:pos -1], '\s*$', '', '')
+  let l:shortcontext = a:pos > 0 ? substitute(l:currentText[0: a:pos -1], '\s*$', '', '') : ''
 
   let l:lineNum = l:currentLine
   if empty(l:shortcontext)

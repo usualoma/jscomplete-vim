@@ -915,7 +915,12 @@ function s:GetCurrentLHSTokens (line, lineNum, tokens, isNewLine)
     elseif prevToken.type == 'ObjectLiteral'
       return isNewLine || index(s:Keywords, identifier) >= 0 ? tokens[1:] : []
     else
-      call insert(tokens, {'type': 'Identifier', 'name': identifier, 'pri': s:ExpressionPriority.Primary})
+      let token = {'type': 'Identifier', 'name': identifier, 'pri': s:ExpressionPriority.Primary}
+      if identifier == 'this'
+        let token.type = 'keyword'
+        let token.pos = [a:lineNum, len(line) - 3]
+      endif
+      call insert(tokens, token)
     endif
 
     let line = substitute(line, identifier.'$', '', '')
@@ -944,6 +949,35 @@ function s:GetDeclaration (name)
 endfunction
 " 1}}}
 
+function s:GetThisContext (token)
+  let currentPos = [line('.'), col('.')]
+  call cursor(a:token.pos)
+  let l:pos = searchpairpos('{', '', '}', 'Wb')
+  while l:pos[0] != 0
+    let l:str = l:pos[1]> 1 ? getline(l:pos[0])[0: l:pos[1] -2] : ''
+    if l:str =~ '^\s*$'
+      let l:pos[0] = prevnonblank(l:pos[0] -1)
+      if !l:pos[0]
+        return {'props': b:GlobalObject}
+      endif
+      let l:str = getline(l:line)
+    endif
+    if l:str =~ '\<\([gs]et\s\+\k\+\|function\s*\(\k\+\)\?\)\s*([^)]\{-})\s*$'
+      let l:pos = searchpairpos('{', '', '}', 'Wb')
+      if !l:pos[0]
+        return {'props': b:GlobalObject}
+      endif
+      let l:endPos = searchpairpos('{', '', '}', 'Wn')
+      let result = s:ParseObject({'start': l:pos, 'end': l:endPos})
+      return result
+    else
+      let l:pos = searchpairpos('{', '', '}', 'Wb')
+    endif
+  endwhile
+
+  return {'props': b:GlobalObject}
+endfunction
+
 " Dict s:EvalExpression (List::tokens) {{{1
 function s:EvalExpression (tokens)
   let result = {}
@@ -953,8 +987,12 @@ function s:EvalExpression (tokens)
   for token in a:tokens
     let type = token.type
     if empty(result)
-      if type == 'keyword' && token.name == 'new'
-        let isNewExpression += 1
+      if type == 'keyword'
+        if token.name == 'new'
+          let isNewExpression += 1
+        elseif token.name == 'this'
+          let result = s:GetThisContext(token)
+        endif
       elseif type == 'ArrayLiteral'
         let result = s:ParseArray(token.pos)
       elseif type == 'ObjectLiteral'
@@ -1306,6 +1344,9 @@ function s:ParseTokens(start, end, pri)
               return [] " Syntax Error
             endif
             let t.pri = s:ExpressionPriority.Relational
+          elseif m == 'this'
+            let t.pri = s:ExpressionPriority.Primary
+            let t.pos = [currentLine, currentCol]
           endif
           call add(tokens, t)
         elseif !isNewLine && m == 'is' || m == 'isnt'

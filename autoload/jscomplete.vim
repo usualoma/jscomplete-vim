@@ -935,17 +935,16 @@ endfunction
 function s:GetDeclaration (name)
   let pos = searchpos('\<'. a:name .'\s*=\s*', 'Wbne')
   let fPos = searchpos('\<function\s\+'. a:name .'\>', 'Wbn')
-  if pos[0] < fPos[0]
+  let pri = s:ExpressionPriority.Comma
+  if pos[0] < fPos[0] || (pos[0] == fPos[0] && pos[1] < fPos[1])
     let pos = fPos
-    let pos[1] -= 1
-  elseif pos[0] == fPos[0] && pos[1] < fPos[1]
-    let pos = fPos
-    let pos[1] -= 1
+    let pri = s:ExpressionPriority.Primary
   endif
+  let pos[1] -= 1
   if pos[0] == 0
     return {}
   endif
-  return s:ParseExpression({'start': pos, 'end': []}, 1)
+  return s:ParseExpression({'start': pos, 'end': []}, pri)
 endfunction
 " 1}}}
 
@@ -1426,6 +1425,9 @@ function s:ParseTokens(start, end, pri)
           let token.funcArgs = pos
         elseif isFunction == 3 " function () {}
           let token.block = pos
+          if a:pri >= s:ExpressionPriority.Primary
+            return tokens
+          endif
           let isFunction = 0
         elseif isFunction == 4 " Identifier()
           if !has_key(token, 'callArgs')

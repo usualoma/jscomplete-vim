@@ -713,6 +713,75 @@ let s:domObject.FormData = {
 " 2}}}
 " 1}}}
 
+" DOM XPath {{{1
+" http://www.w3.org/TR/DOM-Level-3-XPath/
+" XPathExpression {{{2
+let s:domObject.XPathExpression = {
+  \   'kind': 'v', 'type': 'Object', 'props': {
+  \     'evaluate': {'kind': 'f', 'menu': '[XPathExpression]', 'type': 'XPathResult'}
+  \   }
+  \ }
+" 2}}}
+" XPathResult {{{2
+let s:domObject.XPathResult = {
+  \   'kind': 'v', 'type': 'Object', 'props': {
+  \     'ANY_TYPE':                     {'kind': 'v', 'menu': '[XPathResult] 0', 'type': 'Number'},
+  \     'NUMBER_TYPE':                  {'kind': 'v', 'menu': '[XPathResult] 1', 'type': 'Number'},
+  \     'STRING_TYPE':                  {'kind': 'v', 'menu': '[XPathResult] 2', 'type': 'Number'},
+  \     'BOOLEAN_TYPE':                 {'kind': 'v', 'menu': '[XPathResult] 3', 'type': 'Number'},
+  \     'UNORDERED_NODE_ITERATOR_TYPE': {'kind': 'v', 'menu': '[XPathResult] 4', 'type': 'Number'},
+  \     'ORDERED_NODE_ITERATOR_TYPE':   {'kind': 'v', 'menu': '[XPathResult] 5', 'type': 'Number'},
+  \     'UNORDERED_NODE_SNAPSHOT_TYPE': {'kind': 'v', 'menu': '[XPathResult] 6', 'type': 'Number'},
+  \     'ORDERED_NODE_SNAPSHOT_TYPE':   {'kind': 'v', 'menu': '[XPathResult] 7', 'type': 'Number'},
+  \     'ANY_UNORDERED_NODE_TYPE':      {'kind': 'v', 'menu': '[XPathResult] 8', 'type': 'Number'},
+  \     'FIRST_ORDERED_NODE_TYPE':      {'kind': 'v', 'menu': '[XPathResult] 9', 'type': 'Number'},
+  \     'prototype': {
+  \       'kind': 'v', 'menu': '[XPathResult]', 'type': 'Object', 'props': {
+  \         'ANY_TYPE':                     {'kind': 'v', 'menu': '[XPathResult] 0', 'type': 'Number'},
+  \         'NUMBER_TYPE':                  {'kind': 'v', 'menu': '[XPathResult] 1', 'type': 'Number'},
+  \         'STRING_TYPE':                  {'kind': 'v', 'menu': '[XPathResult] 2', 'type': 'Number'},
+  \         'BOOLEAN_TYPE':                 {'kind': 'v', 'menu': '[XPathResult] 3', 'type': 'Number'},
+  \         'UNORDERED_NODE_ITERATOR_TYPE': {'kind': 'v', 'menu': '[XPathResult] 4', 'type': 'Number'},
+  \         'ORDERED_NODE_ITERATOR_TYPE':   {'kind': 'v', 'menu': '[XPathResult] 5', 'type': 'Number'},
+  \         'UNORDERED_NODE_SNAPSHOT_TYPE': {'kind': 'v', 'menu': '[XPathResult] 6', 'type': 'Number'},
+  \         'ORDERED_NODE_SNAPSHOT_TYPE':   {'kind': 'v', 'menu': '[XPathResult] 7', 'type': 'Number'},
+  \         'ANY_UNORDERED_NODE_TYPE':      {'kind': 'v', 'menu': '[XPathResult] 8', 'type': 'Number'},
+  \         'FIRST_ORDERED_NODE_TYPE':      {'kind': 'v', 'menu': '[XPathResult] 9', 'type': 'Number'},
+  \         'resultType':             {'kind': 'v', 'menu': '[XPathResult]', 'type': 'Number'},
+  \         'numverValue':            {'kind': 'v', 'menu': '[XPathResult]', 'type': 'Number'},
+  \         'stringValue':            {'kind': 'v', 'menu': '[XPathResult]', 'type': 'String'},
+  \         'booleanValue':           {'kind': 'v', 'menu': '[XPathResult]', 'type': 'Boolean'},
+  \         'singleNodeValue':        {'kind': 'v', 'menu': '[XPathResult]', 'type': 'Node'},
+  \         'invalideIteratorState':  {'kind': 'v', 'menu': '[XPathResult]', 'type': 'Boolean'},
+  \         'snapshotLength':         {'kind': 'v', 'menu': '[XPathResult]', 'type': 'Number'},
+  \         'iterateNext':            {'kind': 'f', 'menu': '[XPathResult]', 'type': 'Node'},
+  \         'snapshotItem':           {'kind': 'f', 'menu': '[XPathResult]', 'type': 'Node'},
+  \       }
+  \     }
+  \   }
+  \ }
+" 2}}}
+" XPathNSResolver {{{2
+let s:domObject.XPathNSResolver = {
+  \   'kind': 'v', 'type': 'Object', 'props': {
+  \     'prototype': {
+  \       'kind': 'v', 'menu': '[XPathNSResolver]', 'type': 'Object', 'props': {
+  \         'lookupNamespaceURI': {'kind': 'f', 'menu': '[XPathNSResolver]', 'type': 'String'},
+  \       }
+  \     }
+  \   }
+  \ }
+" 2}}}
+" Document properties {{{2
+let s:domXPath = {
+  \   'createExpression': {'kind': 'f', 'menu': '[XPathEvaluator]', 'type': 'XPathExpression'},
+  \   'createNSResolver': {'kind': 'f', 'menu': '[XPathEvaluator]', 'type': 'XPathNSResolver'},
+  \   'evaluate':         {'kind': 'f', 'menu': '[XPathEvaluator]', 'type': 'XPathResult'},
+  \ }
+call extend(s:domObject.Document.props.prototype.props, s:domXPath)
+" 2}}}
+" 1}}}
+
 " HTML5 {{{1
 let s:html5 = {}
 " Window {{{2

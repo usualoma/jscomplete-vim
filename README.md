@@ -1,37 +1,35 @@
 jscomplete-vim
 ==============
 
-JavaScript complete script
+The modern complement Vim plugin for JavaScript guys.
 
-既存の javascriptcomplete.vim がアレだったので...。
-
-use as omnifunc
+Using as omnifunc
 ---------------
 
-`omnifunc` に `jscomplete#CompleteJS` を設定すると動くよ。
+Set `jscomplete#CompleteJS` to `omnifunc` in your `.vimrc` like this.
 
     autocmd FileType javascript
       \ :setl omnifunc=jscomplete#CompleteJS
 
-- 主目的
-  - `.` や `[` 後のプロパティを補完する
+Then available complement properties after `.`,`[` keywords.
 
-use as neocomplcache plugin
+Using as neocomplcache plugin
 ---------------------------
 
-特に設定は必要ないです。(下記「拡張」はお好みで)
+[neocomplcache](https://github.com/Shougo/neocomplcache) is the Vim plugin to keyword completion.
+No more is necessary to basically using.
 
-拡張
-----
+Optional extensions
+-------------------
 
-`autoload/js/` 以下に拡張用スクリプトがある
-
-`g:jscomplete_use` または `b:jscomplete_use` にリストをいれると読み込まれる。
+Extension scripts under the `autoload/js/` will be loaded with set list to
+`g:jscomplete_use` or `b:jscomplete_use` in your `.vimrc` like this.
 
     :let g:jscomplete_use = ['dom', 'moz']
-    " => autoload/js/dom.vim と autoload/js/moz.vim が読まれる
 
-- `dom.vim` : DOM 系の補完リストを追加するよ
-- `moz.vim` : Mozilla JavaScript の追加リスト
-- `xpcom.vim` : Mozilla の XPCOM コンポーネント(`Components`オブジェクト) 系のリストを追加
+- `dom.vim` : Adding DOM keywords completion.
+- `moz.vim` : Adding Mozilla JavaScript keywords completion.
+- `xpcom.vim` : Adding Mozilla XPCOM component keywords completion.
+
+Thanks: http://www.okuryu.com/2012/05/24/introduce-jscomplete-vim.html
 

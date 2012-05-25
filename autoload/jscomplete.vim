@@ -750,7 +750,7 @@ function s:GetPropertyType (parent, token)
     let properties = s:GetProperties(a:parent)
     if has_key(properties, name)
       let prop = properties[name]
-      if prop.kind == 'f'
+      if get(prop, 'kind', '') == 'f'
         call extend(result, prop)
       elseif has_key(prop, 'type')
         if type(prop.type) == 2 "Function

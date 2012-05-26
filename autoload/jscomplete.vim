@@ -525,6 +525,12 @@ let s:GlobalObject.Map = {
   \     }
   \   }
   \ }
+let s:GlobalObject.Proxy = {
+  \   'kind': 'v', 'type': 'Object', 'menu': '[Proxy]', 'props': {
+  \     'create':         {'kind': 'f', 'menu': '[Proxy]', 'type': 'Object'},
+  \     'createFunction': {'kind': 'f', 'menu': '[Proxy]', 'type': 'Function'}
+  \   }
+  \ }
 " 2}}}
 " 1}}}
 function s:GlobalObject.Object.type (arguments, parent)

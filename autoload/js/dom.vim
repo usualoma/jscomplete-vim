@@ -21,7 +21,7 @@ let s:domObject.EventTarget = {
   \       'kind': 'v', 'type': 'Object', 'props': {
   \         'addEventListener':    {'kind': 'f', 'menu': '[EventTarget]', 'type': ''},
   \         'removeEventListener': {'kind': 'f', 'menu': '[EventTarget]', 'type': ''},
-  \         'dipatchEvent':        {'kind': 'f', 'menu': '[EventTarget]', 'type': 'Boolean'},
+  \         'dispatchEvent':       {'kind': 'f', 'menu': '[EventTarget]', 'type': 'Boolean'},
   \       }
   \     }
   \   }

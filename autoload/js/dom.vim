@@ -782,6 +782,15 @@ call extend(s:domObject.Document.props.prototype.props, s:domXPath)
 " 2}}}
 " 1}}}
 
+" Selector API Level 1 {{{1
+" http://www.w3.org/TR/selectors-api/
+let s:SelectorAPI = {
+  \   'querySelector':    {'kind': 'f', 'menu': '[SelectorsAPI]', 'type': 'Element'},
+  \   'querySelectorAll': {'kind': 'f', 'menu': '[SelectorsAPI]', 'type': 'NodeList'},
+  \ }
+call extend(s:domObject.Node.props.prototype.props, s:SelectorAPI)
+" 1}}}
+
 " HTML5 {{{1
 let s:html5 = {}
 " Window {{{2

@@ -954,6 +954,7 @@ function s:GetDeclaration (name)
 endfunction
 " 1}}}
 
+" Dict s:GetThisContext (Dict::token) {{{1
 function s:GetThisContext (token)
   let currentPos = [line('.'), col('.')]
   call cursor(a:token.pos)
@@ -982,6 +983,7 @@ function s:GetThisContext (token)
 
   return {'props': b:GlobalObject}
 endfunction
+" 1}}}
 
 " Dict s:EvalExpression (List::tokens) {{{1
 function s:EvalExpression (tokens)

@@ -624,11 +624,32 @@ function! jscomplete#SetGlobalObject ()
   return b:GlobalObject
 endfunction
 " 1}}}
-" void s:LoadScripts (List::names) {{{1
-function s:LoadScripts (names)
-  if type(a:names) == 3
+
+" void s:LoadScripts ({List|String}::names) {{{1
+function! s:LoadScripts (names)
+  if !exists('b:jscomplete_loaded')
+    let b:jscomplete_loaded = {}
+  endif
+
+  let t = type(a:names)
+  if t == 1 " String
+    if get(b:jscomplete_loaded, a:names, 0) != 1
+      let b:jscomplete_loaded[a:names] = 0
+      exec 'call js#'. a:names .'#Extend(keys(b:jscomplete_loaded))'
+      let b:jscomplete_loaded[a:names] = 1
+    endif
+  elseif t == 3 " Array
     for name in a:names
-      exec 'call js#'.name.'#Extend(a:names)'
+      if get(b:jscomplete_loaded, name, 0) != 1
+        let b:jscomplete_loaded[name] = 0
+      endif
+    endfor
+    let l:keys = keys(b:jscomplete_loaded)
+    for name in a:names
+      if get(b:jscomplete_loaded, name, 0) != 1
+        exec 'call js#'.name.'#Extend(l:keys)'
+        let b:jscomplete_loaded[name] = 1
+      endif
     endfor
   endif
 endfunction

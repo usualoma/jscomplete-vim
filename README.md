@@ -30,6 +30,7 @@ Extension scripts under the `autoload/js/` will be loaded with set list to
 - `dom.vim` : Adding DOM keywords completion.
 - `moz.vim` : Adding Mozilla JavaScript keywords completion.
 - `xpcom.vim` : Adding Mozilla XPCOM component keywords completion.
+- `es6th.vim` : Adding ECMAScript 6th keywords completion.
 
 Command
 -------

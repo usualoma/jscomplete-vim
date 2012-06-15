@@ -31,6 +31,7 @@ use as neocomplcache plugin
 - `dom.vim` : DOM 系の補完リストを追加するよ
 - `moz.vim` : Mozilla JavaScript の追加リスト
 - `xpcom.vim` : Mozilla の XPCOM コンポーネント(`Components`オブジェクト) 系のリストを追加
+- `es6th.vim` : ECMAScript 6th の補完リストを追加するよ
 
 コマンド
 --------

@@ -2,11 +2,6 @@
 " Vim completion for DOM
 " Maintainer:   teramako
 
-if exists('b:loaded_jscomplete_xpcom')
-  finish
-endif
-let b:loaded_jscomplete_xpcom = 1
-
 let s:save_cpo = &cpo
 set cpo&vim
 

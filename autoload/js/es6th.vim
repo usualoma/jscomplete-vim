@@ -1,11 +1,6 @@
 " vim: set fdm=marker:
 " Vim completion for ECMAScript 6th
 
-if exists('g:loaded_jscomplete_es6th')
-  finish
-endif
-let g:loaded_jscomplete_es6th = 1
-
 let s:save_cpo = &cpo
 set cpo&vim
 

@@ -2,11 +2,6 @@
 " vim: set fdm=marker:
 " Vim completion for DOM
 
-if exists('b:loaded_jscomplete_moz')
-  finish
-endif
-let b:loaded_jscomplete_moz = 1
-
 let s:save_cpo = &cpo
 set cpo&vim
 

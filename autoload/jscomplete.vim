@@ -621,6 +621,9 @@ function! jscomplete#SetGlobalObject ()
       call s:LoadScripts(b:jscomplete_use)
     endif
   endif
+
+  call s:SetCommand()
+
   return b:GlobalObject
 endfunction
 " 1}}}
@@ -1561,6 +1564,32 @@ function s:ConvertCompleteWords (props, filter, quote, postfix)
   endfor
   return comp_list
 endfunction
+" 1}}}
+
+" jscomplete commands {{{1
+" s:SetCommand {{{2
+function s:SetCommand ()
+  command! -buffer -nargs=* -complete=customlist,s:completePluginList JSCompleteUse call s:loadPlugin(<f-args>)
+endfunction
+" 2}}}
+" :JSCompleteUse action {{{2
+function s:loadPlugin (...)
+  if a:0 > 0
+    call s:LoadScripts(a:000)
+  else
+    let all = map(split(globpath(&runtimepath, 'autoload/js/*.vim'), '\n'), "substitute(v:val, '^.*/\\|\\.vim$', '', 'g')")
+    let loaded = keys(b:jscomplete_loaded)
+    echo 'jscompleteplugins: '. join(map(all, 'index(loaded, v:val) >= 0 ? "+".v:val : "-".v:val'), ', ')
+  endif
+endfunction
+" 2}}}
+" :JSCompleteUse completer {{{2
+function s:completePluginList (lead, cmd, pos)
+  let all = map(split(globpath(&runtimepath, 'autoload/js/*.vim'), '\n'), "substitute(v:val, '^.*/\\|\\.vim$', '', 'g')")
+  let loaded = keys(b:jscomplete_loaded)
+  return filter(all, "v:val =~ '^'.a:lead && index(loaded, v:val) < 0")
+endfunction
+" 2}}}
 " 1}}}
 
 let &cpo = s:save_cpo

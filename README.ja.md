@@ -32,3 +32,15 @@ use as neocomplcache plugin
 - `moz.vim` : Mozilla JavaScript の追加リスト
 - `xpcom.vim` : Mozilla の XPCOM コンポーネント(`Components`オブジェクト) 系のリストを追加
 
+コマンド
+--------
+
+###:JSCompleteUse
+拡張プラグインを読み込むコマンドです
+
+    :JSCompleteUse [<pluginName>, ...]
+
+- 引数なしの場合、読み込まれたプラグインと未読み込みのプラグインを表示します
+  - `+`: 読み込まれているプラグイン
+  - `-`: 読み込まれていないプラグイン
+

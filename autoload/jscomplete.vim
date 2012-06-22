@@ -894,7 +894,7 @@ function s:GetCurrentLHSTokens (line, lineNum, tokens, isNewLine)
         call insert(tokens, {'type': 'Identifier', 'name': identifier, 'pri': s:ExpressionPriority.Primary})
       endif
     elseif prevToken.type == 'ObjectLiteral'
-      return isNewLine || index(s:Keywords, identifier) >= 0 ? tokens[1:] : []
+      return a:isNewLine || index(s:Keywords, identifier) >= 0 ? tokens[1:] : []
     else
       let token = {'type': 'Identifier', 'name': identifier, 'pri': s:ExpressionPriority.Primary}
       if identifier == 'this'

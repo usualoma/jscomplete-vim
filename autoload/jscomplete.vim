@@ -565,6 +565,7 @@ function! jscomplete#GetCompleteWords (complWord, shortcontext, lineNum, complet
   let col = len(a:shortcontext)
   let quote = ''
   let postfix = ''
+  call jscomplete#SetGlobalObject()
   if a:shortcontext =~ '\.$'
     let target = s:ParseCurrentExpression(a:shortcontext[: col -2], a:lineNum)
   elseif a:shortcontext =~ '\[$'

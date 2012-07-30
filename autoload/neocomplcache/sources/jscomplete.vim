@@ -9,9 +9,9 @@ let s:source = {
   \ 'filetypes': { 'javascript': 1 },
   \ }
 
-function s:source.initialize() "{{{
-  call jscomplete#SetGlobalObject()
-endfunction "}}}
+" function s:source.initialize() "{{{
+"   call jscomplete#SetGlobalObject()
+" endfunction "}}}
 function s:source.finalize() "{{{
   unlet! b:GlobalObject
 endfunction "}}}

@@ -1106,6 +1106,22 @@ let s:html5.Selection = {
 " 2}}}
 " 1}}}
 
+" High Resolution Time {{{1
+" http://www.w3.org/TR/hr-time/
+" Performance {{{2
+let s:html5.Performance = {
+  \   'kind': 'v', 'type': 'Object', 'props': {
+  \     'prototype': {
+  \       'kind': 'v', 'type': 'Object', 'props': {
+  \         'now': {'kind': 'f', 'menu': '[Performance]', 'type': 'Number'},
+  \       }
+  \     }
+  \   }
+  \ }
+" 2}}}
+let s:html5.Window.props.prototype.props.performance = {'kind': 'v', 'menu': '[Performance]', 'type': 'Performance'}
+" 1}}}
+
 function! js#dom#Extend (names)
   if !exists('b:GlobalObject')
     return

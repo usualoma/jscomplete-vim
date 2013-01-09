@@ -1028,17 +1028,18 @@ function s:EvalCall (target, isNewExpression, arguments, parent)
         let t = 'newType'
       endif
 
-      if type(a:target[t]) == 1 && has_key(b:GlobalObject, a:target[t])
-        let constructor = b:GlobalObject[a:target[t]]
-      elseif type(a:target[t]) == 2 "Function
-        let res = a:target[t](s:ParseArguments(a:arguments), a:parent)
-        if type(res) == 1 && has_key(b:GlobalObject, res)
-          let constructor = b:GlobalObject[res]
-        elseif type(res) == 4
-          let constructor = res
+      let constructor = b:GlobalObject.Object
+      if has_key(a:target, t)
+        if type(a:target[t]) == 1 && has_key(b:GlobalObject, a:target[t])
+          let constructor = b:GlobalObject[a:target[t]]
+        elseif type(a:target[t]) == 2 "Function
+          let res = a:target[t](s:ParseArguments(a:arguments), a:parent)
+          if type(res) == 1 && has_key(b:GlobalObject, res)
+            let constructor = b:GlobalObject[res]
+          elseif type(res) == 4
+            let constructor = res
+          endif
         endif
-      else
-        let constructor = b:GlobalObject.Object
       endif
 
       if has_key(constructor, 'props')

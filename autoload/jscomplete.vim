@@ -1237,7 +1237,7 @@ function s:CalcValue (lhs, rhs, op)
       let result.value = lhsValue . rhsValue
     endif
     return result
-  elseif op =~ '[*/%-]'
+  elseif a:op =~ '[*/%-]'
     let result = copy(b:GlobalObject.Number.props.prototype)
     let result.value = eval(lhsValue . a:op . rhsValue)
     return result

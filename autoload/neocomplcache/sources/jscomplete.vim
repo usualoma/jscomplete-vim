@@ -22,7 +22,7 @@ function s:source.get_keyword_pos (cur_text) "{{{
   return jscomplete#GetCompletePosition(a:cur_text, line('.'))
 endfunction "}}}
 function s:source.get_complete_words (pos, complWord) "{{{
-  let completionLength = neocomplcache#get_completion_length('jscomplete')
+  let completionLength = neocomplcache#get_completion_length('js_complete')
   if completionLength == 0 && exists('g:neocomplcache_auto_completion_start_length')
     let completionLength = g:neocomplcache_auto_completion_start_length
   endif
